@@ -1,0 +1,479 @@
+<meta charset="utf-8">
+<title>DFWT Regional Command Center — Weekly Scorecard</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --bg:#f5f6f8;--panel:#fff;--panel2:#f0f2f5;--line:#e2e5ea;
+    --ink:#1a1d24;--ink2:#4a515e;--ink3:#8a909c;
+    --orange:#ef8b22;--navy:#1b3a5c;
+    --sg:#1f8f5f;--g:#2f9be0;--watch:#d9932a;--r:#d64a3f;--na:#9aa0ab;
+    --sg-bg:#e3f4ec;--g-bg:#e4f1fb;--watch-bg:#fbf0dd;--r-bg:#fbe6e4;--na-bg:#eef0f3;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#0f1115;--panel:#171a21;--panel2:#1d2129;--line:#2a2f3a;
+      --ink:#e8eaed;--ink2:#a8adb8;--ink3:#6f7683;
+      --sg-bg:rgba(31,143,95,.16);--g-bg:rgba(47,155,224,.16);--watch-bg:rgba(217,147,42,.18);
+      --r-bg:rgba(214,74,63,.18);--na-bg:rgba(154,160,171,.14);}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:15px;line-height:1.5}
+  .wrap{max-width:1180px;margin:0 auto;padding:30px 26px 90px}
+  .top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;
+    border-bottom:2px solid var(--orange);padding-bottom:14px;margin-bottom:6px}
+  h1{margin:0;font-size:24px;font-weight:800;letter-spacing:-.01em;color:var(--navy)}
+  @media (prefers-color-scheme:dark){h1{color:var(--ink)}}
+  .eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);font-weight:800;margin-bottom:3px}
+  .refresh{font-size:12.5px;color:var(--ink3);text-align:right}
+  .refresh b{color:var(--ink2)}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin:16px 0 14px;font-size:11.5px;color:var(--ink3)}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+  .d-sg{background:var(--sg)}.d-g{background:var(--g)}.d-watch{background:var(--watch)}.d-r{background:var(--r)}.d-na{background:var(--na)}
+  .note{background:var(--watch-bg);border-left:3px solid var(--watch);border-radius:0 8px 8px 0;
+    padding:10px 14px;font-size:12.5px;color:var(--ink2);margin-bottom:20px}
+
+  .branchblock{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:16px 18px;margin-bottom:14px}
+  .branchblock.hot{border-left:3px solid var(--r)} .branchblock.warm{border-left:3px solid var(--watch)} .branchblock.cool{border-left:3px solid var(--sg)}
+  .bhead{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .bhead .bn{font-size:19px;font-weight:800}
+  .bhead .bg{font-size:11px;font-weight:800;padding:2px 9px;border-radius:20px}
+  .bg-sg{background:var(--sg-bg);color:var(--sg)}.bg-g{background:var(--g-bg);color:var(--g)}
+  .bg-watch{background:var(--watch-bg);color:var(--watch)}.bg-r{background:var(--r-bg);color:var(--r)}
+  .bhead .roles{font-size:12px;color:var(--ink3);margin-left:auto}
+
+  .tiles{display:grid;grid-template-columns:repeat(6,1fr);gap:7px}
+  @media (max-width:860px){.tiles{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:520px){.tiles{grid-template-columns:repeat(2,1fr)}}
+  .tile{border-radius:9px;padding:8px 6px 7px;text-align:center;border:1px solid transparent}
+  .tile .v{font-size:17px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
+  .tile .lab{font-size:9.5px;color:var(--ink3);margin-top:3px;text-transform:uppercase;letter-spacing:.03em}
+  .tile .t{font-size:10px;color:var(--ink3);margin-top:1px}
+  .t-sg{background:var(--sg-bg)} .t-sg .v{color:var(--sg)}
+  .t-g{background:var(--g-bg)} .t-g .v{color:var(--g)}
+  .t-watch{background:var(--watch-bg)} .t-watch .v{color:var(--watch)}
+  .t-r{background:var(--r-bg)} .t-r .v{color:var(--r)}
+  .t-na{background:var(--na-bg)} .t-na .v{color:var(--na)}
+  .tile.clk{cursor:pointer;position:relative}
+  .tile.clk::after{content:'▾';position:absolute;top:3px;right:5px;font-size:9px;color:var(--ink3)}
+  .tile.clk:hover{outline:1px solid var(--ink3)}
+  .tile.clk.active::after{content:'▴'}
+
+  /* breakout panels */
+  .breakout{margin-top:8px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px 15px}
+  .bo-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--ink3)}
+  .bo-sub{font-size:12px;color:var(--ink2);margin:2px 0 9px}
+  .bo-sub b{color:var(--ink)}
+  .mgrrow{display:grid;grid-template-columns:180px 1fr 66px;align-items:center;gap:12px;padding:4px 0}
+  .mgrrow .mn{font-size:13px;font-weight:600}
+  .mgrrow .mn em{font-style:normal;color:var(--ink3);font-size:10.5px;font-weight:700;margin-left:5px}
+  .mgrrow .bar{height:8px;background:var(--line);border-radius:5px;overflow:hidden}
+  .mgrrow .bar i{display:block;height:100%;border-radius:5px}
+  .mgrrow .mv{font-size:13.5px;font-weight:800;text-align:right;font-variant-numeric:tabular-nums}
+  .cmprow{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:12px;padding:5px 0;border-bottom:1px solid var(--line)}
+  .cmprow:last-child{border-bottom:none}
+  .cmprow .cn{font-size:13px;font-weight:600}
+  .cmprow .cn em{font-style:normal;color:var(--ink3);font-size:10.5px;font-weight:700;margin-left:5px}
+  .cmprow .cv{font-size:13.5px;font-weight:800;font-variant-numeric:tabular-nums;min-width:60px;text-align:right}
+  .cmprow .cs{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;padding:2px 8px;border-radius:20px;min-width:74px;text-align:center}
+  .cs-sg{background:var(--sg-bg);color:var(--sg)} .cs-g{background:var(--g-bg);color:var(--g)}
+  .cs-watch{background:var(--watch-bg);color:var(--watch)} .cs-r{background:var(--r-bg);color:var(--r)}
+  .c-sg{color:var(--sg)} i.c-sg{background:var(--sg)}
+  .c-g{color:var(--g)} i.c-g{background:var(--g)}
+  .c-watch{color:var(--watch)} i.c-watch{background:var(--watch)}
+  .c-r{color:var(--r)} i.c-r{background:var(--r)}
+  .bo-note{font-size:11px;color:var(--ink3);margin-top:8px}
+  @media (max-width:520px){.mgrrow{grid-template-columns:100px 1fr 52px;gap:8px}.mgrrow .mn{font-size:12px}}
+
+  details.deepdive{margin-top:12px;border-top:1px dashed var(--line);padding-top:6px}
+  summary.ddsum{cursor:pointer;font-size:12.5px;font-weight:700;color:var(--orange);padding:6px 0;list-style:none;
+    display:flex;align-items:center;gap:6px}
+  summary.ddsum::-webkit-details-marker{display:none}
+  summary.ddsum::before{content:'▸';transition:transform .15s;display:inline-block}
+  details[open] summary.ddsum::before{transform:rotate(90deg)}
+  .ddsub{font-weight:400;color:var(--ink3);font-size:11.5px}
+  .dd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:9px;margin:8px 0 4px}
+  .ddcard{border:1px solid var(--line);border-radius:9px;padding:10px 12px;background:var(--panel2)}
+  .ddcard.live{border-color:var(--sg);background:var(--sg-bg)}
+  .ddcard.crit{border-color:var(--r);background:var(--r-bg)}
+  .ddcard.crit h4{color:var(--r)}
+  .ddpill{font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:1px 6px;border-radius:4px;color:#fff}
+  .p-live{background:var(--sg)} .p-build{background:var(--orange)} .p-p2{background:var(--watch)} .p-p3{background:var(--na)} .p-crit{background:var(--r)}
+  .ddcard h4{margin:6px 0 3px;font-size:13px;font-weight:800}
+  .ddcard .big{font-size:15px;font-weight:800;font-variant-numeric:tabular-nums}
+  .ddcard p{margin:2px 0 0;font-size:11.5px;color:var(--ink3)}
+  .ddcard a{font-size:11.5px;font-weight:700;color:var(--g);text-decoration:none;display:inline-block;margin-top:4px}
+
+  h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);font-weight:800;
+    border-bottom:1px solid var(--line);padding-bottom:8px;margin:40px 0 14px}
+  .ritual{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 22px}
+  .ritual ol{margin:8px 0 0;padding-left:20px}
+  .ritual li{padding:4px 0;font-size:13.5px}
+  .ritual li b{color:var(--ink)}
+  .footnote{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+  .fn{flex:1;min-width:240px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 15px;font-size:12.5px;color:var(--ink2)}
+  .fn b{color:var(--ink)}
+  a{color:var(--g);text-decoration:none}
+  .muted{color:var(--ink3);font-size:12px}
+  code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:12px}
+</style>
+
+<div class="wrap">
+<div class="top">
+  <div>
+    <div class="eyebrow">Road to A+ · Q3 2026</div>
+    <h1>DFWT Regional Command Center</h1>
+  </div>
+  <div class="refresh">Window: <b>Aug 1–7 · wk 1 of 13</b><br>Refreshed: <b>Aug 10</b> · EMMA · Samsara · Monday</div>
+</div>
+
+<div class="legend">
+  <span><span class="dot d-sg"></span>Super Green</span>
+  <span><span class="dot d-g"></span>Green</span>
+  <span><span class="dot d-watch"></span>Watch</span>
+  <span><span class="dot d-r"></span>Red</span>
+  <span style="margin-left:auto">Ordered worst→best grade — fires at the top</span>
+</div>
+
+<div class="note"><b>Every tile expands.</b> Click any tile (they all carry a <b>▾</b>) for the breakdown behind the number — Sales/Praise/Games by manager, Hiring by month, and QG Pace into the directional composite (which surfaces NPS and Driver Safety). QG Pace = the 6 graded metrics we can track weekly; Growth and the official grade lock at quarter close. Click <b>Deep dive</b> for the scoreless diagnostics. <b>Live Q3 (wk 1 of 13):</b> Hiring, Branch Sales (pace vs expected-to-date), Praise, and Individual Sales (each manager’s booked $ vs quarterly quota). <b>Games</b> is held at 0, <b>pending Matisen loading the Q3 Games data</b>. <b>QG Pace</b> is a directional composite of the 4 live metrics (Personnel, Sales, Recognition, Driver Safety); NPS + Games are pending, and it firms up as Sales/Recognition clear week-1 noise.</div>
+
+<!-- ============ DALLAS ============ -->
+<div class="branchblock hot">
+  <div class="bhead"><span class="bn">Dallas</span><span class="bg bg-r">Q2: C · 70.8</span><span class="roles">Beattie · Vaughan · Enoh</span></div>
+  <div class="tiles">
+    <div class="tile t-g clk" data-target="dal-sales"><div class="v">97%</div><div class="lab">Branch Sales</div><div class="t">Q3 pace</div></div>
+    <div class="tile t-g clk" data-target="dal-sales"><div class="v">104%</div><div class="lab">Indiv Sales</div><div class="t">team vs pace</div></div>
+    <div class="tile t-r clk" data-target="dal-praise"><div class="v">54%</div><div class="lab">Praise</div><div class="t">Q3 pace</div></div>
+    <div class="tile t-sg clk" data-target="dal-hiring"><div class="v">108.3%</div><div class="lab">Hiring</div><div class="t">vs block goal</div></div>
+    <div class="tile t-na clk" data-target="dal-games"><div class="v">0</div><div class="lab">Games</div><div class="t">pending</div></div>
+    <div class="tile t-watch clk" data-target="dal-qg"><div class="v">73.8</div><div class="lab">QG Pace</div><div class="t">directional · C+</div></div>
+  </div>
+  <div class="breakout" id="dal-sales" hidden>
+    <div class="bo-title">Sales — branch pace + by manager</div>
+    <div class="bo-sub">Branch booked <b>$80,475</b> / <b>$1,082,578</b> (7.4% QTD) · pace <b>97%</b> vs expected-to-date (wk 1 of 13):</div>
+    <div class="cmprow"><span class="cn">Chris Beattie <em>BM</em></span><span class="cv">$9,336 / $38,500</span><span class="cs cs-sg">24% · ahead</span></div>
+    <div class="cmprow"><span class="cn">Landon Vaughan <em>OM</em></span><span class="cv">$1,337 / $94,500</span><span class="cs cs-r">1% · behind</span></div>
+    <div class="bo-note">Beattie ahead of pace; Landon (OM, on the bigger $94,500 quota) is off to a slow start. Tabi (FM) carries no individual sales goal. <br>Branch pace = total branch revenue; individual = each manager’s personal booking quota. Expected-to-date ≈ 7.7% (even wk-1 split); the sales dashboard’s own expected pace is ~11% (seasonally weighted). Source: EMMA, Aug 7.</div>
+  </div>
+  <div class="breakout" id="dal-praise" hidden>
+    <div class="bo-title">Praise — Q3 cadence</div>
+    <div class="bo-sub">Logged Q3-to-date (wk 1 of 13) · branch pace vs expected-to-date <b>54%</b>:</div>
+    <div class="mgrrow"><span class="mn">Chris Beattie <em>BM</em></span><div class="bar"><i class="c-watch" style="width:81%"></i></div><span class="mv c-watch">3 logged</span></div>
+    <div class="mgrrow"><span class="mn">Landon Vaughan <em>OM</em></span><div class="bar"><i class="c-r" style="width:4%"></i></div><span class="mv c-r">0 logged</span></div>
+    <div class="mgrrow"><span class="mn">Tabi Enoh <em>FM</em></span><div class="bar"><i class="c-watch" style="width:72%"></i></div><span class="mv c-watch">2 logged</span></div>
+    <div class="bo-note">Beattie and Tabi are roughly on early cadence; Landon hasn't logged a Q3 entry yet.</div>
+  </div>
+  <div class="breakout" id="dal-hiring" hidden>
+    <div class="bo-title">Hiring / staffing — FTE vs 2-week block goal</div>
+    <div class="bo-sub">44.4 FTE vs the 41 block goal (TUR projection, Table 2):</div>
+    <div class="mgrrow"><span class="mn">Now · Jul 27–Aug 9</span><div class="bar"><i class="c-sg" style="width:90%"></i></div><span class="mv c-sg">108.3%</span></div>
+    <div class="bo-note">Super Green. Goal steps down into the slow season — 41 now → 36 on 8/24 → 29 on 9/7 — so staffing can ease with it.</div>
+  </div>
+  <div class="breakout" id="dal-games" hidden>
+    <div class="bo-title">Games — Q3 pending</div>
+    <div class="bo-sub">Q3 Games scoring isn’t loaded yet — Matisen is updating the Games data for the quarter. Held at <b>0</b> until it goes live.</div>
+    <div class="bo-note">Q2 finals for reference: Dallas closed at <b>5.95</b>.</div>
+  </div>
+  <div class="breakout" id="dal-qg" hidden>
+    <div class="bo-title">QG Pace — directional composite</div>
+    <div class="bo-sub">Average of the live graded metrics (NPS + Games pending). Growth and the official grade lock at quarter close:</div>
+    <div class="cmprow"><span class="cn">Customer NPS</span><span class="cv" style="color:var(--ink3)">—</span><span class="cs" style="background:var(--na-bg);color:var(--na)">Pending</span></div>
+    <div class="cmprow"><span class="cn">Driver Safety <em>below line</em></span><span class="cv c-r">67</span><span class="cs cs-r">Red</span></div>
+    <div class="cmprow"><span class="cn">Personnel Budget</span><span class="cv c-sg">108.3%</span><span class="cs cs-sg">Super Green</span></div>
+    <div class="cmprow"><span class="cn">Einstein Games</span><span class="cv" style="color:var(--ink3)">—</span><span class="cs" style="background:var(--na-bg);color:var(--na)">Pending</span></div>
+    <div class="cmprow"><span class="cn">Sales</span><span class="cv c-g">97%</span><span class="cs cs-g">Green</span></div>
+    <div class="cmprow"><span class="cn">Recognition</span><span class="cv c-r">54%</span><span class="cs cs-r">Red</span></div>
+    <div class="cmprow" style="border-top:2px solid var(--line);margin-top:3px"><span class="cn"><b>Directional composite</b> <em>4 of 6 live</em></span><span class="cv c-watch">73.8</span><span class="cs cs-watch">C+</span></div>
+    <div class="bo-note">Directional — <b>4 of 6 metrics live</b>; NPS and Games are pending. Model: average of the live components (Super Green 100 / Green 85 / Watch 70 / Red 55). Driver Safety = Samsara Q3-to-date (Aug 1–9). <b>Sales &amp; Recognition are week-1 pace and noisy</b> — e.g. McKinney’s Recognition is Khevan’s 14 logged-not-delivered. Growth + the official grade still lock at quarter close.</div>
+  </div>
+  <details class="deepdive"><summary class="ddsum">Deep dive <span class="ddsub">— diagnostics with no direct score</span></summary>
+    <div class="dd-grid">
+      <div class="ddcard crit"><span class="ddpill p-crit">Critical</span><h4>Critical Coaching Required</h4><div class="big">3 drivers</div><p>Worst-25% in 2+ categories: Logan Shuster, Aleks Lona, Christian Washington. <a href="drilldown-critical-coaching.html#dal">Open →</a></p></div>
+      <div class="ddcard live"><span class="ddpill p-live">Live</span><h4>Damages</h4><div class="big">17 · $3.7K</div><p>Highest volume (12 movers). Caleb Simien (4); Calvin Dudley (3) compounds with driver safety.</p><a href="drilldown-damages.html#dal">Open drill-down →</a></div>
+      <div class="ddcard crit"><span class="ddpill p-crit">Flag</span><h4>Driver-Safety Offenders</h4><div class="big">5 · below 69</div><p>Branch <b>67 — below the violation line, only DFWT branch there</b>. Worst: Calvin Dudley (0), Eduardo Trevino (0). <a href="drilldown-driver-safety.html#dal">Open →</a></p></div>
+      <div class="ddcard live"><span class="ddpill p-live">Live</span><h4>Estimate-to-Actual</h4><div class="big">20%</div><p>23 of 116 jobs ran &ge;30 min long. Worst: Devin Horace (5 over, +10h). Lona + Dudley compound with damages. <a href="drilldown-estimate-to-actual.html#dal">Open →</a></p></div>
+      <div class="ddcard"><span class="ddpill p-p3">Pending</span><h4>TUR / Utilization</h4><p>Turned off — awaiting a Matisen Move Manager export (partial/full can't be scraped). Spec ready. <a href="drilldown-tur.html">Details →</a></p></div>
+      <div class="ddcard crit"><span class="ddpill p-crit">Flag</span><h4>OT</h4><div class="big">22.6%</div><p>Aug 1–7 · 432 OT hrs. Nearly doubled from Q2’s 12.4% — worst in the region, well over the 10% flag. <a href="drilldown-ot.html">Open →</a></p></div>
+      <div class="ddcard"><span class="ddpill p-p3">Pending</span><h4>Gross Margin</h4><p>Awaiting the monthly gross-margin meetings with accounting — Mike feeds it in from the branch P&L then.</p></div>
+    </div>
+  </details>
+</div>
+
+<!-- ============ McKINNEY ============ -->
+<div class="branchblock hot">
+  <div class="bhead"><span class="bn">McKinney</span><span class="bg bg-r">Q2: C · 71.3</span><span class="roles">Dueck · Krodel</span></div>
+  <div class="tiles">
+    <div class="tile t-sg clk" data-target="mck-sales"><div class="v">107%</div><div class="lab">Branch Sales</div><div class="t">Q3 pace</div></div>
+    <div class="tile t-r clk" data-target="mck-sales"><div class="v">53%</div><div class="lab">Indiv Sales</div><div class="t">team vs pace</div></div>
+    <div class="tile t-sg clk" data-target="mck-praise"><div class="v">217%</div><div class="lab">Praise</div><div class="t">Q3 pace</div></div>
+    <div class="tile t-sg clk" data-target="mck-hiring"><div class="v">122.1%</div><div class="lab">Hiring</div><div class="t">vs block goal</div></div>
+    <div class="tile t-na clk" data-target="mck-games"><div class="v">0</div><div class="lab">Games</div><div class="t">pending</div></div>
+    <div class="tile t-sg clk" data-target="mck-qg"><div class="v">96.2</div><div class="lab">QG Pace</div><div class="t">directional · A</div></div>
+  </div>
+  <div class="breakout" id="mck-sales" hidden>
+    <div class="bo-title">Sales — branch pace + by manager</div>
+    <div class="bo-sub">Branch booked <b>$50,160</b> / <b>$609,604</b> (8.2% QTD) · pace <b>107%</b> vs expected-to-date (wk 1 of 13):</div>
+    <div class="cmprow"><span class="cn">Khevan Dueck <em>BM</em></span><span class="cv">$4,098 / $38,500</span><span class="cs cs-sg">11% · ahead</span></div>
+    <div class="cmprow"><span class="cn">Zach Krodel <em>OM</em></span><span class="cv">$1,366 / $94,500</span><span class="cs cs-r">1% · behind</span></div>
+    <div class="bo-note">Khevan ahead. Zach's 1% is week-1 timing — he's the region's top producer on the big $94,500 OM quota, not a slump. <br>Branch pace = total branch revenue; individual = each manager’s personal booking quota. Expected-to-date ≈ 7.7% (even wk-1 split); the sales dashboard’s own expected pace is ~11% (seasonally weighted). Source: EMMA, Aug 7.</div>
+  </div>
+  <div class="breakout" id="mck-praise" hidden>
+    <div class="bo-title">Praise — Q3 cadence</div>
+    <div class="bo-sub">Logged Q3-to-date (wk 1 of 13) · branch pace vs expected-to-date <b>217%</b>:</div>
+    <div class="mgrrow"><span class="mn">Khevan Dueck <em>BM</em></span><div class="bar"><i class="c-sg" style="width:100%"></i></div><span class="mv c-sg">14 logged</span></div>
+    <div class="mgrrow"><span class="mn">Zach Krodel <em>OM</em></span><div class="bar"><i class="c-r" style="width:4%"></i></div><span class="mv c-r">0 logged</span></div>
+    <div class="bo-note">Khevan front-loaded 14 — but all are logged, not yet delivered to the team. Deliver the backlog so they land. Zach hasn't logged yet.</div>
+  </div>
+  <div class="breakout" id="mck-hiring" hidden>
+    <div class="bo-title">Hiring / staffing — FTE vs 2-week block goal</div>
+    <div class="bo-sub">23.2 FTE vs the 19 block goal (TUR projection, Table 2):</div>
+    <div class="mgrrow"><span class="mn">Now · Jul 27–Aug 9</span><div class="bar"><i class="c-sg" style="width:100%"></i></div><span class="mv c-sg">122.1%</span></div>
+    <div class="bo-note">Comfortably over. Goal holds at 19 through late September, then 18 — no hiring pressure.</div>
+  </div>
+  <div class="breakout" id="mck-games" hidden>
+    <div class="bo-title">Games — Q3 pending</div>
+    <div class="bo-sub">Q3 Games scoring isn’t loaded yet — Matisen is updating the Games data for the quarter. Held at <b>0</b> until it goes live.</div>
+    <div class="bo-note">Q2 finals for reference: McKinney closed at <b>7.10</b>.</div>
+  </div>
+  <div class="breakout" id="mck-qg" hidden>
+    <div class="bo-title">QG Pace — directional composite</div>
+    <div class="bo-sub">Average of the live graded metrics (NPS + Games pending). Growth and the official grade lock at quarter close:</div>
+    <div class="cmprow"><span class="cn">Customer NPS</span><span class="cv" style="color:var(--ink3)">—</span><span class="cs" style="background:var(--na-bg);color:var(--na)">Pending</span></div>
+    <div class="cmprow"><span class="cn">Driver Safety</span><span class="cv c-g">88</span><span class="cs cs-g">Green</span></div>
+    <div class="cmprow"><span class="cn">Personnel Budget</span><span class="cv c-sg">122.1%</span><span class="cs cs-sg">Super Green</span></div>
+    <div class="cmprow"><span class="cn">Einstein Games</span><span class="cv" style="color:var(--ink3)">—</span><span class="cs" style="background:var(--na-bg);color:var(--na)">Pending</span></div>
+    <div class="cmprow"><span class="cn">Sales</span><span class="cv c-sg">107%</span><span class="cs cs-sg">Super Green</span></div>
+    <div class="cmprow"><span class="cn">Recognition</span><span class="cv c-sg">217%</span><span class="cs cs-sg">Super Green</span></div>
+    <div class="cmprow" style="border-top:2px solid var(--line);margin-top:3px"><span class="cn"><b>Directional composite</b> <em>4 of 6 live</em></span><span class="cv c-sg">96.2</span><span class="cs cs-sg">A</span></div>
+    <div class="bo-note">Directional — <b>4 of 6 metrics live</b>; NPS and Games are pending. Model: average of the live components (Super Green 100 / Green 85 / Watch 70 / Red 55). Driver Safety = Samsara Q3-to-date (Aug 1–9). <b>Sales &amp; Recognition are week-1 pace and noisy</b> — e.g. McKinney’s Recognition is Khevan’s 14 logged-not-delivered. Growth + the official grade still lock at quarter close.</div>
+  </div>
+  <details class="deepdive"><summary class="ddsum">Deep dive <span class="ddsub">— diagnostics with no direct score</span></summary>
+    <div class="dd-grid">
+      <div class="ddcard crit"><span class="ddpill p-crit">Critical</span><h4>Critical Coaching Required</h4><div class="big">1 driver</div><p>Worst-25% in 2+ categories: Christian Cruz. <a href="drilldown-critical-coaching.html#mck">Open →</a></p></div>
+      <div class="ddcard live"><span class="ddpill p-live">Live</span><h4>Damages</h4><div class="big">11 · $1.8K</div><p><b>Christian Cruz on 6 of 8</b> — clearest repeat offender in the region this window.</p><a href="drilldown-damages.html#mck">Open drill-down →</a></div>
+      <div class="ddcard live"><span class="ddpill p-live">Live</span><h4>Driver-Safety Offenders</h4><div class="big">2 · below 69</div><p>Branch 88 — recovered in Q3 (July drag gone). Offenders: Woodard, Sterling. <a href="drilldown-driver-safety.html#mck">Open →</a></p></div>
+      <div class="ddcard live"><span class="ddpill p-live">Live</span><h4>Estimate-to-Actual</h4><div class="big">26%</div><p>14 of 53 jobs ran long. Kyran Noble (4). <b>Christian Cruz (3) compounds</b> with top damages. <a href="drilldown-estimate-to-actual.html#mck">Open →</a></p></div>
+      <div class="ddcard"><span class="ddpill p-p3">Pending</span><h4>TUR / Utilization</h4><p>Turned off — awaiting a Matisen Move Manager export (partial/full can't be scraped). Spec ready. <a href="drilldown-tur.html">Details →</a></p></div>
+      <div class="ddcard crit"><span class="ddpill p-crit">Flag</span><h4>OT</h4><div class="big">12.5%</div><p>Aug 1–7 · 92 OT hrs. Over the 10% flag (Q2 was 5.3%) — jumped this week, watch it. <a href="drilldown-ot.html">Open →</a></p></div>
+      <div class="ddcard"><span class="ddpill p-p3">Pending</span><h4>Gross Margin</h4><p>Awaiting the monthly gross-margin meetings with accounting — Mike feeds it in from the branch P&L then.</p></div>
+    </div>
+  </details>
+</div>
+
+<!-- ============ GARLAND ============ -->
+<div class="branchblock warm">
+  <div class="bhead"><span class="bn">Garland</span><span class="bg bg-g">Q2: B · 75.8</span><span class="roles">Davis</span></div>
+  <div class="tiles">
+    <div class="tile t-sg clk" data-target="gar-sales"><div class="v">152%</div><div class="lab">Branch Sales</div><div class="t">Q3 pace</div></div>
+    <div class="tile t-sg clk" data-target="gar-sales"><div class="v">620%</div><div class="lab">Indiv Sales</div><div class="t">team vs pace</div></div>
+    <div class="tile t-r clk" data-target="gar-praise"><div class="v">0%</div><div class="lab">Praise</div><div class="t">Q3 pace</div></div>
+    <div class="tile t-sg clk" data-target="gar-hiring"><div class="v">108.0%</div><div class="lab">Hiring</div><div class="t">vs block goal</div></div>
+    <div class="tile t-na clk" data-target="gar-games"><div class="v">0</div><div class="lab">Games</div><div class="t">pending</div></div>
+    <div class="tile t-g clk" data-target="gar-qg"><div class="v">81.2</div><div class="lab">QG Pace</div><div class="t">directional · B</div></div>
+  </div>
+  <div class="breakout" id="gar-sales" hidden>
+    <div class="bo-title">Sales — branch pace + by manager</div>
+    <div class="bo-sub">Branch booked <b>$28,751</b> / <b>$245,570</b> (11.7% QTD) · pace <b>152%</b> vs expected-to-date (wk 1 of 13):</div>
+    <div class="cmprow"><span class="cn">Jack Davis <em>BM</em></span><span class="cv">$18,358 / $38,500</span><span class="cs cs-sg">48% · ahead</span></div>
+    <div class="bo-note">Jack booked nearly half his quarterly quota in week 1 — an exceptional start. <br>Branch pace = total branch revenue; individual = each manager’s personal booking quota. Expected-to-date ≈ 7.7% (even wk-1 split); the sales dashboard’s own expected pace is ~11% (seasonally weighted). Source: EMMA, Aug 7.</div>
+  </div>
+  <div class="breakout" id="gar-praise" hidden>
+    <div class="bo-title">Praise — Q3 cadence</div>
+    <div class="bo-sub">Logged Q3-to-date (wk 1 of 13) · branch pace vs expected-to-date <b>0%</b>:</div>
+    <div class="mgrrow"><span class="mn">Jack Davis <em>BM</em></span><div class="bar"><i class="c-r" style="width:4%"></i></div><span class="mv c-r">0 logged</span></div>
+    <div class="bo-note">No Q3 praise logged yet — the same review-card gap that dragged Garland in Q2. Cheapest Red-to-Green flip in the region.</div>
+  </div>
+  <div class="breakout" id="gar-hiring" hidden>
+    <div class="bo-title">Hiring / staffing — FTE vs 2-week block goal</div>
+    <div class="bo-sub">10.8 FTE vs the 10 block goal (TUR projection, Table 2):</div>
+    <div class="mgrrow"><span class="mn">Now · Jul 27–Aug 9</span><div class="bar"><i class="c-sg" style="width:90%"></i></div><span class="mv c-sg">108.0%</span></div>
+    <div class="bo-note">Over goal. Steps to 9 on 8/24 and 8 on 9/7 — hold and let the goal come down.</div>
+  </div>
+  <div class="breakout" id="gar-games" hidden>
+    <div class="bo-title">Games — Q3 pending</div>
+    <div class="bo-sub">Q3 Games scoring isn’t loaded yet — Matisen is updating the Games data for the quarter. Held at <b>0</b> until it goes live.</div>
+    <div class="bo-note">Q2 finals for reference: Garland closed at <b>8.30</b>.</div>
+  </div>
+  <div class="breakout" id="gar-qg" hidden>
+    <div class="bo-title">QG Pace — directional composite</div>
+    <div class="bo-sub">Average of the live graded metrics (NPS + Games pending). Growth and the official grade lock at quarter close:</div>
+    <div class="cmprow"><span class="cn">Customer NPS</span><span class="cv" style="color:var(--ink3)">—</span><span class="cs" style="background:var(--na-bg);color:var(--na)">Pending</span></div>
+    <div class="cmprow"><span class="cn">Driver Safety</span><span class="cv c-watch">73</span><span class="cs cs-watch">Watch</span></div>
+    <div class="cmprow"><span class="cn">Personnel Budget</span><span class="cv c-sg">108.0%</span><span class="cs cs-sg">Super Green</span></div>
+    <div class="cmprow"><span class="cn">Einstein Games</span><span class="cv" style="color:var(--ink3)">—</span><span class="cs" style="background:var(--na-bg);color:var(--na)">Pending</span></div>
+    <div class="cmprow"><span class="cn">Sales</span><span class="cv c-sg">152%</span><span class="cs cs-sg">Super Green</span></div>
+    <div class="cmprow"><span class="cn">Recognition</span><span class="cv c-r">0%</span><span class="cs cs-r">Red</span></div>
+    <div class="cmprow" style="border-top:2px solid var(--line);margin-top:3px"><span class="cn"><b>Directional composite</b> <em>4 of 6 live</em></span><span class="cv c-g">81.2</span><span class="cs cs-g">B</span></div>
+    <div class="bo-note">Directional — <b>4 of 6 metrics live</b>; NPS and Games are pending. Model: average of the live components (Super Green 100 / Green 85 / Watch 70 / Red 55). Driver Safety = Samsara Q3-to-date (Aug 1–9). <b>Sales &amp; Recognition are week-1 pace and noisy</b> — e.g. McKinney’s Recognition is Khevan’s 14 logged-not-delivered. Growth + the official grade still lock at quarter close.</div>
+  </div>
+  <details class="deepdive"><summary class="ddsum">Deep dive <span class="ddsub">— diagnostics with no direct score</span></summary>
+    <div class="dd-grid">
+      <div class="ddcard"><span class="ddpill p-live" style="background:var(--sg)">Clear</span><h4>Critical Coaching Required</h4><div class="big">0 drivers</div><p>Nobody worst-25% in 2+ categories this period. <a href="drilldown-critical-coaching.html#fw">Open →</a></p></div>
+      <div class="ddcard live"><span class="ddpill p-live">Live</span><h4>Damages</h4><div class="big">1 · $200</div><p>One crew job all window. Effectively clean.</p><a href="drilldown-damages.html#gar">Open drill-down →</a></div>
+      <div class="ddcard live"><span class="ddpill p-live">Live</span><h4>Driver-Safety Offenders</h4><div class="big">2 offenders</div><p>Branch 73 — just above the line. Mitch Staring (40), Cane Bourque (54). <a href="drilldown-driver-safety.html#gar">Open →</a></p></div>
+      <div class="ddcard live"><span class="ddpill p-live">Live</span><h4>Estimate-to-Actual</h4><div class="big">26%</div><p>5 of 19 jobs ran long. Griffin, Staring, Bourque, Johnson (2 each). Staring compounds with driver safety. <a href="drilldown-estimate-to-actual.html#gar">Open →</a></p></div>
+      <div class="ddcard"><span class="ddpill p-p3">Pending</span><h4>TUR / Utilization</h4><p>Turned off — awaiting a Matisen Move Manager export (partial/full can't be scraped). Spec ready. <a href="drilldown-tur.html">Details →</a></p></div>
+      <div class="ddcard live"><span class="ddpill p-live">Live</span><h4>OT</h4><div class="big">1.5%</div><p>Aug 1–7 · 5 OT hrs. Down from Q2’s 7.3% — leanest OT load in the region. <a href="drilldown-ot.html">Open →</a></p></div>
+      <div class="ddcard"><span class="ddpill p-p3">Pending</span><h4>Gross Margin</h4><p>Awaiting the monthly gross-margin meetings with accounting — Mike feeds it in from the branch P&L then.</p></div>
+    </div>
+  </details>
+</div>
+
+<!-- ============ FORT WORTH ============ -->
+<div class="branchblock warm">
+  <div class="bhead"><span class="bn">Fort Worth</span><span class="bg bg-g">Q2: A · 92.3</span><span class="roles">Hardison · Orama</span></div>
+  <div class="tiles">
+    <div class="tile t-watch clk" data-target="fw-sales"><div class="v">80%</div><div class="lab">Branch Sales</div><div class="t">Q3 pace</div></div>
+    <div class="tile t-sg clk" data-target="fw-sales"><div class="v">130%</div><div class="lab">Indiv Sales</div><div class="t">team vs pace</div></div>
+    <div class="tile t-r clk" data-target="fw-praise"><div class="v">16%</div><div class="lab">Praise</div><div class="t">Q3 pace</div></div>
+    <div class="tile t-r clk" data-target="fw-hiring"><div class="v">98.6%</div><div class="lab">Hiring</div><div class="t">under goal</div></div>
+    <div class="tile t-na clk" data-target="fw-games"><div class="v">0</div><div class="lab">Games</div><div class="t">pending</div></div>
+    <div class="tile t-watch clk" data-target="fw-qg"><div class="v">70.0</div><div class="lab">QG Pace</div><div class="t">directional · C</div></div>
+  </div>
+  <div class="breakout" id="fw-sales" hidden>
+    <div class="bo-title">Sales — branch pace + by manager</div>
+    <div class="bo-sub">Branch booked <b>$22,549</b> / <b>$365,485</b> (6.2% QTD) · pace <b>80%</b> vs expected-to-date (wk 1 of 13):</div>
+    <div class="cmprow"><span class="cn">Grant Hardison <em>BM</em></span><span class="cv">$5,768 / $38,500</span><span class="cs cs-sg">15% · ahead</span></div>
+    <div class="cmprow"><span class="cn">Erik Orama <em>OM</em></span><span class="cv">$7,517 / $94,500</span><span class="cs cs-g">8% · on pace</span></div>
+    <div class="bo-note">Grant ahead, Erik roughly on pace — the managers are booking ahead of quota even though the branch revenue total lags. The gap is elsewhere (job volume / average), not the managers' own booking. <br>Branch pace = total branch revenue; individual = each manager’s personal booking quota. Expected-to-date ≈ 7.7% (even wk-1 split); the sales dashboard’s own expected pace is ~11% (seasonally weighted). Source: EMMA, Aug 7.</div>
+  </div>
+  <div class="breakout" id="fw-praise" hidden>
+    <div class="bo-title">Praise — Q3 cadence</div>
+    <div class="bo-sub">Logged Q3-to-date (wk 1 of 13) · branch pace vs expected-to-date <b>16%</b>:</div>
+    <div class="mgrrow"><span class="mn">Grant Hardison <em>BM</em></span><div class="bar"><i class="c-r" style="width:4%"></i></div><span class="mv c-r">0 logged</span></div>
+    <div class="mgrrow"><span class="mn">Erik Orama <em>OM</em></span><div class="bar"><i class="c-r" style="width:36%"></i></div><span class="mv c-r">1 logged</span></div>
+    <div class="bo-note">Slow regional start on recognition — Erik 1, Grant 0. Worth an early nudge before it compounds.</div>
+  </div>
+  <div class="breakout" id="fw-hiring" hidden>
+    <div class="bo-title">Hiring / staffing — FTE vs 2-week block goal</div>
+    <div class="bo-sub">13.8 FTE vs the 14 block goal (TUR projection, Table 2):</div>
+    <div class="mgrrow"><span class="mn">Now · Jul 27–Aug 9</span><div class="bar"><i class="c-r" style="width:82%"></i></div><span class="mv c-r">98.6%</span></div>
+    <div class="bo-note">Just under the 14 goal (Red). But the goal eases to 13 on 8/24 and 12 on 9/7 — FW is effectively staffed for the coming blocks. Hold, don't cut.</div>
+  </div>
+  <div class="breakout" id="fw-games" hidden>
+    <div class="bo-title">Games — Q3 pending</div>
+    <div class="bo-sub">Q3 Games scoring isn’t loaded yet — Matisen is updating the Games data for the quarter. Held at <b>0</b> until it goes live.</div>
+    <div class="bo-note">Q2 finals for reference: Fort Worth closed at <b>9.18</b>.</div>
+  </div>
+  <div class="breakout" id="fw-qg" hidden>
+    <div class="bo-title">QG Pace — directional composite</div>
+    <div class="bo-sub">Average of the live graded metrics (NPS + Games pending). Growth and the official grade lock at quarter close:</div>
+    <div class="cmprow"><span class="cn">Customer NPS</span><span class="cv" style="color:var(--ink3)">—</span><span class="cs" style="background:var(--na-bg);color:var(--na)">Pending</span></div>
+    <div class="cmprow"><span class="cn">Driver Safety</span><span class="cv c-sg">99</span><span class="cs cs-sg">Super Green</span></div>
+    <div class="cmprow"><span class="cn">Personnel Budget</span><span class="cv c-r">98.6%</span><span class="cs cs-r">Red</span></div>
+    <div class="cmprow"><span class="cn">Einstein Games</span><span class="cv" style="color:var(--ink3)">—</span><span class="cs" style="background:var(--na-bg);color:var(--na)">Pending</span></div>
+    <div class="cmprow"><span class="cn">Sales</span><span class="cv c-watch">80%</span><span class="cs cs-watch">Watch</span></div>
+    <div class="cmprow"><span class="cn">Recognition</span><span class="cv c-r">16%</span><span class="cs cs-r">Red</span></div>
+    <div class="cmprow" style="border-top:2px solid var(--line);margin-top:3px"><span class="cn"><b>Directional composite</b> <em>4 of 6 live</em></span><span class="cv c-watch">70.0</span><span class="cs cs-watch">C</span></div>
+    <div class="bo-note">Directional — <b>4 of 6 metrics live</b>; NPS and Games are pending. Model: average of the live components (Super Green 100 / Green 85 / Watch 70 / Red 55). Driver Safety = Samsara Q3-to-date (Aug 1–9). <b>Sales &amp; Recognition are week-1 pace and noisy</b> — e.g. McKinney’s Recognition is Khevan’s 14 logged-not-delivered. Growth + the official grade still lock at quarter close.</div>
+  </div>
+  <details class="deepdive"><summary class="ddsum">Deep dive <span class="ddsub">— diagnostics with no direct score</span></summary>
+    <div class="dd-grid">
+      <div class="ddcard"><span class="ddpill p-live" style="background:var(--sg)">Clear</span><h4>Critical Coaching Required</h4><div class="big">0 drivers</div><p>Nobody worst-25% in 2+ categories this period. <a href="drilldown-critical-coaching.html#fw">Open →</a></p></div>
+      <div class="ddcard live"><span class="ddpill p-live">Live</span><h4>Damages</h4><div class="big">9 · $1.2K</div><p>~1 move (Smith, 8/2 — Harris + Bell crew), not a pattern.</p><a href="drilldown-damages.html#fw">Open drill-down →</a></div>
+      <div class="ddcard live"><span class="ddpill p-live">Live</span><h4>Driver-Safety Offenders</h4><div class="big">0 offenders</div><p>Near-perfect (99). Clean. <a href="drilldown-driver-safety.html#fw">Open →</a></p></div>
+      <div class="ddcard live"><span class="ddpill p-live">Live</span><h4>Estimate-to-Actual</h4><div class="big">20%</div><p>6 of 30 jobs ran long. Worst: Ryder Bell (3 over, +8.8h). <a href="drilldown-estimate-to-actual.html#fw">Open →</a></p></div>
+      <div class="ddcard"><span class="ddpill p-p3">Pending</span><h4>TUR / Utilization</h4><p>Turned off — awaiting a Matisen Move Manager export (partial/full can't be scraped). Spec ready. <a href="drilldown-tur.html">Details →</a></p></div>
+      <div class="ddcard live"><span class="ddpill p-live">Live</span><h4>OT</h4><div class="big">5.6%</div><p>Aug 1–7 · 26 OT hrs. Under the flag, down from Q2’s 9.5%. <a href="drilldown-ot.html">Open →</a></p></div>
+      <div class="ddcard"><span class="ddpill p-p3">Pending</span><h4>Gross Margin</h4><p>Awaiting the monthly gross-margin meetings with accounting — Mike feeds it in from the branch P&L then.</p></div>
+    </div>
+  </details>
+</div>
+
+<!-- ============ TAMPA ============ -->
+<div class="branchblock cool">
+  <div class="bhead"><span class="bn">Tampa</span><span class="bg bg-sg">Q2: A+ · 96.3</span><span class="roles">Anderson · Heaberlin</span></div>
+  <div class="tiles">
+    <div class="tile t-sg clk" data-target="tpa-sales"><div class="v">108%</div><div class="lab">Branch Sales</div><div class="t">Q3 pace</div></div>
+    <div class="tile t-r clk" data-target="tpa-sales"><div class="v">26%</div><div class="lab">Indiv Sales</div><div class="t">team vs pace</div></div>
+    <div class="tile t-r clk" data-target="tpa-praise"><div class="v">16%</div><div class="lab">Praise</div><div class="t">Q3 pace</div></div>
+    <div class="tile t-r clk" data-target="tpa-hiring"><div class="v">87.3%</div><div class="lab">Hiring</div><div class="t">under goal</div></div>
+    <div class="tile t-na clk" data-target="tpa-games"><div class="v">0</div><div class="lab">Games</div><div class="t">pending</div></div>
+    <div class="tile t-watch clk" data-target="tpa-qg"><div class="v">77.5</div><div class="lab">QG Pace</div><div class="t">directional · B−</div></div>
+  </div>
+  <div class="breakout" id="tpa-sales" hidden>
+    <div class="bo-title">Sales — branch pace + by manager</div>
+    <div class="bo-sub">Branch booked <b>$21,993</b> / <b>$264,080</b> (8.3% QTD) · pace <b>108%</b> vs expected-to-date (wk 1 of 13):</div>
+    <div class="cmprow"><span class="cn">Steven Anderson <em>BM</em></span><span class="cv">$2,210 / $49,000</span><span class="cs cs-r">5% · behind</span></div>
+    <div class="cmprow"><span class="cn">Shane Heaberlin <em>OM</em></span><span class="cv">$0 / $61,250</span><span class="cs cs-r">0% · behind</span></div>
+    <div class="bo-note">Steven (trainee BM) and Shane both slow out of the gate on their personal quotas. <br>Branch pace = total branch revenue; individual = each manager’s personal booking quota. Expected-to-date ≈ 7.7% (even wk-1 split); the sales dashboard’s own expected pace is ~11% (seasonally weighted). Source: EMMA, Aug 7.</div>
+  </div>
+  <div class="breakout" id="tpa-praise" hidden>
+    <div class="bo-title">Praise — Q3 cadence</div>
+    <div class="bo-sub">Logged Q3-to-date (wk 1 of 13) · branch pace vs expected-to-date <b>16%</b>:</div>
+    <div class="mgrrow"><span class="mn">Steven Anderson <em>BM</em></span><div class="bar"><i class="c-r" style="width:27%"></i></div><span class="mv c-r">1 logged</span></div>
+    <div class="mgrrow"><span class="mn">Shane Heaberlin <em>OM</em></span><div class="bar"><i class="c-r" style="width:4%"></i></div><span class="mv c-r">0 logged</span></div>
+    <div class="bo-note">Steven 1 (logged, not delivered), Shane 0. Early — watch the cadence.</div>
+  </div>
+  <div class="breakout" id="tpa-hiring" hidden>
+    <div class="bo-title">Hiring / staffing — FTE vs 2-week block goal</div>
+    <div class="bo-sub">9.6 FTE vs the 11 block goal (TUR projection, Table 2):</div>
+    <div class="mgrrow"><span class="mn">Now · Jul 27–Aug 9</span><div class="bar"><i class="c-r" style="width:73%"></i></div><span class="mv c-r">87.3%</span></div>
+    <div class="bo-note">Under the 11 goal (Red) — the real staffing gap. Goal only eases to 10 on 9/7 (still ~96%). Needs roughly 1–2 FTE to reach the band.</div>
+  </div>
+  <div class="breakout" id="tpa-games" hidden>
+    <div class="bo-title">Games — Q3 pending</div>
+    <div class="bo-sub">Q3 Games scoring isn’t loaded yet — Matisen is updating the Games data for the quarter. Held at <b>0</b> until it goes live.</div>
+    <div class="bo-note">Q2 finals for reference: Tampa closed at <b>10.05</b>.</div>
+  </div>
+  <div class="breakout" id="tpa-qg" hidden>
+    <div class="bo-title">QG Pace — directional composite</div>
+    <div class="bo-sub">Average of the live graded metrics (NPS + Games pending). Growth and the official grade lock at quarter close:</div>
+    <div class="cmprow"><span class="cn">Customer NPS</span><span class="cv" style="color:var(--ink3)">—</span><span class="cs" style="background:var(--na-bg);color:var(--na)">Pending</span></div>
+    <div class="cmprow"><span class="cn">Driver Safety</span><span class="cv c-sg">100</span><span class="cs cs-sg">Super Green</span></div>
+    <div class="cmprow"><span class="cn">Personnel Budget</span><span class="cv c-r">87.3%</span><span class="cs cs-r">Red</span></div>
+    <div class="cmprow"><span class="cn">Einstein Games</span><span class="cv" style="color:var(--ink3)">—</span><span class="cs" style="background:var(--na-bg);color:var(--na)">Pending</span></div>
+    <div class="cmprow"><span class="cn">Sales</span><span class="cv c-sg">108%</span><span class="cs cs-sg">Super Green</span></div>
+    <div class="cmprow"><span class="cn">Recognition</span><span class="cv c-r">16%</span><span class="cs cs-r">Red</span></div>
+    <div class="cmprow" style="border-top:2px solid var(--line);margin-top:3px"><span class="cn"><b>Directional composite</b> <em>4 of 6 live</em></span><span class="cv c-watch">73.8</span><span class="cs cs-watch">C+</span></div>
+    <div class="bo-note">Directional — <b>4 of 6 metrics live</b>; NPS and Games are pending. Model: average of the live components (Super Green 100 / Green 85 / Watch 70 / Red 55). Driver Safety = Samsara Q3-to-date (Aug 1–9). <b>Sales &amp; Recognition are week-1 pace and noisy</b> — e.g. McKinney’s Recognition is Khevan’s 14 logged-not-delivered. Growth + the official grade still lock at quarter close.</div>
+  </div>
+  <details class="deepdive"><summary class="ddsum">Deep dive <span class="ddsub">— diagnostics with no direct score</span></summary>
+    <div class="dd-grid">
+      <div class="ddcard"><span class="ddpill p-live" style="background:var(--sg)">Clear</span><h4>Critical Coaching Required</h4><div class="big">0 drivers</div><p>Nobody worst-25% in 2+ categories this period. <a href="drilldown-critical-coaching.html#fw">Open →</a></p></div>
+      <div class="ddcard live"><span class="ddpill p-live">Live</span><h4>Damages</h4><div class="big">0</div><p>Clean — no damages with a Date of Move in Aug 1–9.</p><a href="drilldown-damages.html#tpa">Open drill-down →</a></div>
+      <div class="ddcard live"><span class="ddpill p-live">Live</span><h4>Driver-Safety Offenders</h4><div class="big">0 offenders</div><p>Perfect (100). <a href="drilldown-driver-safety.html#fw">Open →</a></p></div>
+      <div class="ddcard live"><span class="ddpill p-live">Live</span><h4>Estimate-to-Actual</h4><div class="big">36%</div><p>5 of 14 jobs (small sample). David Sanchez (3), Sloan Kraus (2). <a href="drilldown-estimate-to-actual.html#tpa">Open →</a></p></div>
+      <div class="ddcard"><span class="ddpill p-p3">Pending</span><h4>TUR / Utilization</h4><p>Turned off — awaiting a Matisen Move Manager export. Tampa TUR 51.5% (Q2) = worst in co. <a href="drilldown-tur.html">Details →</a></p></div>
+      <div class="ddcard live"><span class="ddpill p-live">Live</span><h4>OT</h4><div class="big">0.0%</div><p>Aug 1–7 · 0 OT hrs. No overtime — though partly idle trucks, not just tight scheduling. <a href="drilldown-ot.html">Open →</a></p></div>
+      <div class="ddcard"><span class="ddpill p-p3">Pending</span><h4>Gross Margin</h4><p>Awaiting the monthly gross-margin meetings with accounting — Mike feeds it in from the branch P&L then.</p></div>
+    </div>
+  </details>
+</div>
+
+<h2>The morning refresh</h2>
+<div class="ritual">
+<p class="muted">Same workflow as the sales dashboard: once you're signed into EMMA in the morning, Gerald refreshes. Runs as often as you like (EMMA logs out overnight, so it needs your fresh sign-in first). The weekly lens is just the review layer on top — trends and coaching aim.</p>
+<ol>
+<li><b>You sign into EMMA</b> — the EMMA-fed tiles (TUR, OT, branch + individual sales) can only pull once your session is live for the day.</li>
+<li><b>Gerald refreshes</b> — auto-pulls Games, Praise, damages + driver-safety offenders, QG pace (Monday + Samsara + dashboard reads), then pulls the EMMA numbers.</li>
+<li><b>Hiring / staffing</b> — the tile is FTE vs the branch's 2-week block goal from the <a href="https://einstein-moving.github.io/einstein-fleet-5e12a9f13a86/q3-tur-projection-3dde0a126d8c.html">Q3 TUR projection</a> (Table 2). Same source and block schedule that drives the <a href="../Manager Hiring Dashboard/hiring-goal-dashboard.html">Hiring Goal Tracker</a>, so the two never diverge. Goals step down into the slow season on their own as the weeks cross blocks.</li>
+<li><b>Trend + flag</b> — each tile gets an arrow vs the prior read; any branch drifting toward a Red gets flagged.</li>
+<li><b>Aim the week</b> — the flags become your one-on-one and site-visit targets. The <code>/command</code> skill runs the refresh one metric at a time: <code>/command sales · praise · hiring · games · damages · driving · estimate · OT</code> (or <code>/command all</code> to run them in order).</li>
+</ol>
+</div>
+
+<div class="footnote">
+  <div class="fn"><b>Customer NPS — by design, no tile.</b> NPS is the output, not an input. It's driven almost entirely by damages and estimate-to-actual. Coach the low performers there up or out and NPS follows, so we track the two causes, not the symptom. (It's shown inside each branch's QG breakdown.)</div>
+  <div class="fn"><b>Gross margin — monthly.</b> Wires in as a per-branch line when the monthly gross-margin meetings start and the spreadsheets exist. Margin is a monthly close, not a weekly number.</div>
+</div>
+
+<p class="muted" style="margin-top:26px">DFWT Regional Command Center · Q3 2026 · shared with branch managers for weekly review. Refreshed each Monday; figures are as-of the prior complete day.</p>
+</div>
+<script>
+  document.querySelectorAll('.tile.clk').forEach(function(tile){
+    tile.addEventListener('click',function(){
+      var id=tile.getAttribute('data-target');
+      var panel=document.getElementById(id);
+      if(!panel)return;
+      var isOpen=!panel.hasAttribute('hidden');
+      document.querySelectorAll('.breakout').forEach(function(b){b.setAttribute('hidden','')});
+      document.querySelectorAll('.tile.clk').forEach(function(t){t.classList.remove('active')});
+      if(!isOpen){
+        panel.removeAttribute('hidden');
+        document.querySelectorAll('.tile.clk[data-target="'+id+'"]').forEach(function(t){t.classList.add('active')});
+      }
+    });
+  });
+</script>

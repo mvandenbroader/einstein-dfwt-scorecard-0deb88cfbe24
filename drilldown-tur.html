@@ -1,0 +1,94 @@
+<meta charset="utf-8">
+<title>Truck Utilization (TUR) — DFWT Drill-Down</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --bg:#f5f6f8;--panel:#fff;--panel2:#f0f2f5;--line:#e2e5ea;
+    --ink:#1a1d24;--ink2:#4a515e;--ink3:#8a909c;
+    --orange:#ef8b22;--navy:#1b3a5c;
+    --sg:#1f8f5f;--g:#2f9be0;--watch:#d9932a;--r:#d64a3f;
+    --sg-bg:#e3f4ec;--g-bg:#e4f1fb;--watch-bg:#fbf0dd;--r-bg:#fbe6e4;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#0f1115;--panel:#171a21;--panel2:#1d2129;--line:#2a2f3a;
+      --ink:#e8eaed;--ink2:#a8adb8;--ink3:#6f7683;
+      --sg-bg:rgba(31,143,95,.16);--g-bg:rgba(47,155,224,.16);--watch-bg:rgba(217,147,42,.18);--r-bg:rgba(214,74,63,.18);}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.5}
+  .wrap{max-width:1000px;margin:0 auto;padding:30px 26px 90px}
+  .top{border-bottom:2px solid var(--orange);padding-bottom:14px;margin-bottom:18px}
+  .eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);font-weight:800;margin-bottom:3px}
+  h1{margin:0;font-size:24px;font-weight:800;letter-spacing:-.01em;color:var(--navy)}
+  @media (prefers-color-scheme:dark){h1{color:var(--ink)}}
+  .sub{font-size:12.5px;color:var(--ink3);margin-top:4px}
+  .proto{background:var(--watch-bg);border-left:3px solid var(--watch);border-radius:0 8px 8px 0;padding:12px 16px;margin:18px 0;font-size:13.5px}
+  .insight{background:var(--g-bg);border-left:3px solid var(--g);border-radius:0 8px 8px 0;padding:12px 16px;margin:18px 0;font-size:14px}
+  h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);font-weight:800;border-bottom:1px solid var(--line);padding-bottom:8px;margin:34px 0 14px}
+  .defs{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin:6px 0}
+  .def{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+  .def h4{margin:0 0 3px;font-size:13px;color:var(--navy)}
+  @media (prefers-color-scheme:dark){.def h4{color:var(--ink)}}
+  .def p{margin:0;font-size:12px;color:var(--ink3)}
+  table{width:100%;border-collapse:collapse;margin:6px 0;font-size:13px}
+  th{text-align:left;color:var(--ink3);font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;font-weight:700;padding:7px 9px;border-bottom:1px solid var(--line)}
+  th.r,td.r{text-align:right}
+  td{padding:9px 9px;border-bottom:1px solid var(--line);vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  .day{font-weight:800}
+  .num{font-variant-numeric:tabular-nums}
+  .pct{display:inline-block;min-width:48px;text-align:center;font-weight:800;padding:3px 9px;border-radius:20px;font-variant-numeric:tabular-nums}
+  .p-hi{background:var(--sg-bg);color:var(--sg)} .p-mid{background:var(--watch-bg);color:var(--watch)} .p-lo{background:var(--r-bg);color:var(--r)}
+  .pending td{color:var(--ink3);font-style:italic}
+  .muted{color:var(--ink3);font-size:12px}
+  a{color:var(--g);text-decoration:none}
+  .callout{background:var(--panel);border:1px solid var(--orange);border-radius:11px;padding:16px 18px;margin:20px 0}
+  .callout h3{margin:0 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--orange)}
+  .callout ul{margin:0;padding-left:18px} .callout li{padding:3px 0;font-size:13.5px}
+</style>
+
+<div class="wrap">
+<div class="top">
+  <div class="eyebrow">DFWT Truck Utilization · Q3 2026</div>
+  <h1>Truck Utilization (TUR)</h1>
+  <div class="sub">Source: EMMA Move Manager · target = <b>most recent complete Mon–Sun week</b> (refreshed Mondays; last week = Jul 27–Aug 2) · the biggest NOI lever in the region</div>
+</div>
+
+<div class="proto"><b>Status: TURNED OFF — Pending Matisen Report.</b> TUR is on hold until a Matisen Move Manager data export exists. Reason: partial-vs-full utilization can't be reliably read off the screen (busy days stack two jobs on one truck), and the full metric is ~35 manual pulls a week. This page stands as the <b>spec</b> — the metric definition and the two example days below show exactly what the report should produce.</div>
+
+<h2>How TUR is measured</h2>
+<div class="defs">
+  <div class="def"><h4>Closed</h4><p>Grayed-out truck — Repairs, Sold, or Personnel (no crew). Doesn't count against you.</p></div>
+  <div class="def"><h4>Open</h4><p>Staffed truck with no job. The actionable gap — a crew and a truck with nothing to do.</p></div>
+  <div class="def"><h4>Booked %</h4><p>Booked ÷ Available (available = total − closed). Are the trucks working?</p></div>
+  <div class="def"><h4>Fullness %</h4><p>Booked hours ÷ (available trucks × 8-hr day). Are they <em>full</em>, or a pile of half-day jobs?</p></div>
+</div>
+
+<div class="insight"><b>The two days already tell the story.</b> Tuesday was slammed — every available truck booked and ~84% full. Wednesday booked 85% but only filled 53% of the day: two staffed trucks sat open and most jobs were 3–4 hr half-days. <b>Booked% tells you if trucks are working; Fullness% tells you how much capacity is leaking out in half-days.</b> Both matter, and they move independently.</div>
+
+<h2>Dallas — TUR by day</h2>
+<table>
+<tr><th>Day</th><th class="r">Trucks</th><th class="r">Closed</th><th class="r">Open</th><th class="r">Booked</th><th class="r">Booked hrs</th><th>Booked %</th><th>Fullness %</th></tr>
+<tr><td class="day">Mon 8/3</td><td class="r" colspan="7" style="text-align:left;color:var(--ink3);font-style:italic">pending pull</td></tr>
+<tr><td class="day">Tue 8/4</td><td class="r num">15</td><td class="r num">2</td><td class="r num">0</td><td class="r num">~13</td><td class="r num">~87</td><td><span class="pct p-hi">~100%</span></td><td><span class="pct p-mid">~84%</span></td></tr>
+<tr><td class="day">Wed 8/5</td><td class="r num">15</td><td class="r num">2</td><td class="r num">2</td><td class="r num">11</td><td class="r num">55.5</td><td><span class="pct p-mid">85%</span></td><td><span class="pct p-lo">53%</span></td></tr>
+<tr class="pending"><td class="day">Thu 8/6</td><td class="r" colspan="7" style="text-align:left">pending pull</td></tr>
+<tr class="pending"><td class="day">Fri 8/7</td><td class="r" colspan="7" style="text-align:left">pending pull</td></tr>
+<tr class="pending"><td class="day">Sat 8/8</td><td class="r" colspan="7" style="text-align:left">pending pull</td></tr>
+<tr class="pending"><td class="day">Sun 8/9</td><td class="r" colspan="7" style="text-align:left">pending pull</td></tr>
+</table>
+<p class="muted">Tue's booked count is approximate (~) — big moves put one job on multiple trucks in Move Manager, so the exact booked-truck count needs careful per-day reading. Wed's is clean (11 booked, 2 open verified). This imprecision is the crux of the sourcing decision below.</p>
+
+<div class="callout">
+<h3>Decision: how do we source TUR going forward?</h3>
+<p style="margin:0 0 8px;font-size:13.5px">TUR is the most valuable metric here (it drives NOI) and the hardest to pull. Two honest realities from building this prototype:</p>
+<ul>
+<li><b>Scale.</b> It's a <b>per-day, per-branch</b> read. A full week × 5 branches = <b>~35 separate Move Manager pulls</b> every Monday. That's not sustainable to do by hand.</li>
+<li><b>Accuracy.</b> Closed / unbooked / booked counts read cleanly. But <b>partial-vs-full</b> needs each truck's <em>total</em> hours, and busy days stack two jobs on one truck (Sat Aug 1: 21 jobs across 15 trucks) — the flat job list can't attribute those to the right truck. Partial/full specifically needs the underlying schedule data.</li>
+</ul>
+<p style="margin:8px 0 0;font-size:13.5px"><b>Recommendation:</b> ask Matisen for a simple weekly Move Manager export — per branch per day: total trucks, closed, and each truck's booked hours. That one feed turns ~35 fragile manual pulls into one clean import and makes TUR (plus the per-mover OT view) genuinely weekly-sustainable. Until then, I can grind it manually branch-by-branch if you want it now — Dallas is half-done above.</p>
+</div>
+
+<p class="muted" style="margin-top:22px"><b>Notes:</b> Full day = 8 hrs (Move Manager axis runs 7 AM–8 PM; jobs run 3–9 hrs). "Available" excludes closed trucks. TUR here is the operational schedule view; it's related to but not identical to the quarter-end owned-fleet TUR on the Q2 scorecard (Dallas 78.3%). Week = Mon–Sun, refreshed Mondays. · Part of the <a href="index.html">Road to A+ Command Center</a>.</p>
+</div>

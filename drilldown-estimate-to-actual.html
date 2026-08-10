@@ -1,0 +1,131 @@
+<meta charset="utf-8">
+<title>Estimate-to-Actual — DFWT Drill-Down</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --bg:#f5f6f8;--panel:#fff;--panel2:#f0f2f5;--line:#e2e5ea;
+    --ink:#1a1d24;--ink2:#4a515e;--ink3:#8a909c;
+    --orange:#ef8b22;--navy:#1b3a5c;
+    --sg:#1f8f5f;--g:#2f9be0;--watch:#d9932a;--r:#d64a3f;
+    --sg-bg:#e3f4ec;--g-bg:#e4f1fb;--watch-bg:#fbf0dd;--r-bg:#fbe6e4;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#0f1115;--panel:#171a21;--panel2:#1d2129;--line:#2a2f3a;
+      --ink:#e8eaed;--ink2:#a8adb8;--ink3:#6f7683;
+      --sg-bg:rgba(31,143,95,.16);--g-bg:rgba(47,155,224,.16);--watch-bg:rgba(217,147,42,.18);--r-bg:rgba(214,74,63,.18);}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.5}
+  .wrap{max-width:1000px;margin:0 auto;padding:30px 26px 90px}
+  .top{border-bottom:2px solid var(--orange);padding-bottom:14px;margin-bottom:18px}
+  .eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);font-weight:800;margin-bottom:3px}
+  h1{margin:0;font-size:24px;font-weight:800;letter-spacing:-.01em;color:var(--navy)}
+  @media (prefers-color-scheme:dark){h1{color:var(--ink)}}
+  .sub{font-size:12.5px;color:var(--ink3);margin-top:4px}
+  .proto{background:var(--watch-bg);border-left:3px solid var(--watch);border-radius:0 8px 8px 0;padding:12px 16px;margin:18px 0;font-size:13.5px}
+  .insight{background:var(--g-bg);border-left:3px solid var(--g);border-radius:0 8px 8px 0;padding:12px 16px;margin:18px 0;font-size:14px}
+  h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);font-weight:800;border-bottom:1px solid var(--line);padding-bottom:8px;margin:34px 0 14px}
+  table{width:100%;border-collapse:collapse;margin:6px 0;font-size:13px}
+  th{text-align:left;color:var(--ink3);font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;font-weight:700;padding:7px 9px;border-bottom:1px solid var(--line)}
+  th.r,td.r{text-align:right}
+  td{padding:8px 9px;border-bottom:1px solid var(--line);vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  .num{font-variant-numeric:tabular-nums}
+  .pct{display:inline-block;min-width:44px;text-align:center;font-weight:800;padding:3px 9px;border-radius:20px;font-variant-numeric:tabular-nums}
+  .p-hi{background:var(--r-bg);color:var(--r)} .p-mid{background:var(--watch-bg);color:var(--watch)} .p-lo{background:var(--sg-bg);color:var(--sg)}
+  .muted{color:var(--ink3);font-size:12px}
+  a{color:var(--g);text-decoration:none}
+  .bstat{display:flex;flex-wrap:wrap;gap:22px;margin:4px 0 12px}
+  .bstat .s{font-size:12px;color:var(--ink3)}
+  .bstat .s b{display:block;font-size:20px;color:var(--ink);font-weight:800;font-variant-numeric:tabular-nums}
+  .focus{background:var(--r-bg);border:1px solid var(--r);border-radius:11px;padding:14px 16px;margin:10px 0 8px}
+  .focus h3{margin:0 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--r)}
+  details{background:var(--panel);border:1px solid var(--line);border-radius:11px;margin:8px 0 0;padding:0 16px}
+  summary{cursor:pointer;padding:12px 0;font-weight:700;font-size:13px;color:var(--ink2);list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▸ ";color:var(--orange);font-weight:800}
+  details[open] summary::before{content:"▾ "}
+  details[open] summary{border-bottom:1px solid var(--line)}
+  .branch{scroll-margin-top:14px;margin:30px 0 0;padding-top:6px}
+  .branch h2{margin-top:0}
+  tr.worst td{background:var(--r-bg)}
+  tr.worst td:first-child{box-shadow:inset 3px 0 0 var(--r)}
+  .tag{display:inline-block;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--r);border:1px solid var(--r);border-radius:20px;padding:1px 7px;margin-left:7px;vertical-align:middle}
+  .nav{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+  .nav a{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:5px 13px;font-size:12px;font-weight:700;color:var(--ink2)}
+</style>
+
+<div class="wrap">
+<div class="top">
+  <div class="eyebrow">DFWT Estimate-to-Actual · Q2 2026 baseline</div>
+  <h1>Estimate-to-Actual</h1>
+  <div class="sub">Source: branch contract sheets (Move Manager "Input" tab) · window <b>Aug 1–9, 2026</b> (Q3-to-date, today excluded) · refreshes forward each cycle · the crew-accountability side of the time equation</div>
+</div>
+
+<div class="insight" id="lead"></div>
+
+<div class="proto">
+  <b>How this is measured.</b> Every job carries the crew's <b>walkthrough estimate</b> (the hours the movers commit to on site) and the <b>total billable time</b> (what it actually took). An <b>over-run</b> = the job ran at least <b>30 minutes past</b> the estimate. Per your call, this tracks <b>over-runs only</b> — jobs that blew past what the customer was told — and attributes each over-run to the <b>whole crew</b> on the job. A mover's <b>over-run rate</b> = share of their jobs that ran long (minimum 5 jobs to rank). "Hours long" = total hours over estimate across those jobs. The <b>worst 25%</b> of each branch's rated movers is the coaching priority.
+</div>
+
+<h2>Region — over-run rate by branch</h2>
+<table id="region"></table>
+<div class="nav" id="nav"></div>
+
+<div id="branches"></div>
+
+<p class="muted" style="margin-top:26px"><b>Notes:</b> "Estimate" is the movers' on-site walkthrough number, not the sales quote — it's the crew's own commitment, which is why the crew owns the miss. A high over-run rate means the crew consistently takes longer than they told the customer: OT, schedule cascade, and a bill bigger than the estimate. Coming in <em>under</em> estimate is not flagged here (your call — over-runs only). The sheet also tracks estimated vs actual men, so when actual crew &gt; estimated crew, support was pulled in — a separate signal we can layer later. · Feeds the <a href="drilldown-critical-coaching.html">Critical Coaching</a> compounding view. · Part of the <a href="index.html">Road to A+ Command Center</a>.</p>
+</div>
+
+<script>
+const DATA = {"Dallas":{"jobs":116,"matOver":23,"pct":20,"totOver":39,"cut":21,"movers":[{"n":"Devin Horace","o":5,"j":8,"r":63,"h":10},{"n":"Alonzo Nelson","o":4,"j":9,"r":44,"h":8.3},{"n":"Johnny Coffey","o":3,"j":5,"r":60,"h":9.8},{"n":"Alejandro Lona","o":3,"j":8,"r":38,"h":8.8},{"n":"Ryan Raley","o":3,"j":7,"r":43,"h":8.5},{"n":"Aedan Fucile","o":3,"j":8,"r":38,"h":8.3},{"n":"Noah Halpin","o":3,"j":7,"r":43,"h":4},{"n":"Jayvien Holman","o":3,"j":8,"r":38,"h":3},{"n":"Eduardo Trevino","o":2,"j":5,"r":40,"h":7.5},{"n":"Adrian Rojo","o":2,"j":4,"r":50,"h":7.5},{"n":"Calvin Dudley","o":2,"j":11,"r":18,"h":6.3},{"n":"Justin Stepp","o":2,"j":10,"r":20,"h":4.5},{"n":"Charles Cook","o":2,"j":6,"r":33,"h":4.5},{"n":"Cameron Richner","o":2,"j":6,"r":33,"h":4},{"n":"Nicolas Santamaria","o":2,"j":2,"r":100,"h":2.3},{"n":"Bryndon Sanderson","o":2,"j":10,"r":20,"h":2},{"n":"Robert Salas","o":2,"j":8,"r":25,"h":2},{"n":"Caleb Simien","o":2,"j":7,"r":29,"h":2},{"n":"Lucas Indgjer","o":2,"j":4,"r":50,"h":1.8},{"n":"Trenzel Johnson","o":2,"j":7,"r":29,"h":1.3},{"n":"Anthony Hines","o":2,"j":6,"r":33,"h":1.3},{"n":"Jaylon Johnson","o":1,"j":6,"r":17,"h":4},{"n":"Cavon Richardson","o":1,"j":9,"r":11,"h":4},{"n":"Brett Miles","o":1,"j":5,"r":20,"h":4},{"n":"Nicholas Taylor","o":1,"j":2,"r":50,"h":4},{"n":"Christian Mosley","o":1,"j":10,"r":10,"h":2.3},{"n":"Isaac Hertzog","o":1,"j":4,"r":25,"h":2.3},{"n":"Shoy Border","o":1,"j":6,"r":17,"h":1.8},{"n":"Tadeus Perryman","o":1,"j":7,"r":14,"h":1.5},{"n":"Gabriel Tello","o":1,"j":10,"r":10,"h":1.3},{"n":"Clark Henderson","o":1,"j":4,"r":25,"h":0.8},{"n":"Victor Castro Hernandez","o":1,"j":6,"r":17,"h":0.8},{"n":"Caleb Goldbach","o":1,"j":6,"r":17,"h":0.8},{"n":"Joshua Midgette","o":1,"j":9,"r":11,"h":0.8},{"n":"Logan Shuster","o":1,"j":5,"r":20,"h":0.5}]},"McKinney":{"jobs":53,"matOver":14,"pct":26,"totOver":22,"cut":11,"movers":[{"n":"Kyran Noble","o":4,"j":8,"r":50,"h":6},{"n":"Jorge Osorio","o":3,"j":6,"r":50,"h":5.5},{"n":"Christian Cruz","o":3,"j":7,"r":43,"h":4.5},{"n":"Piletji Mautjana","o":3,"j":7,"r":43,"h":3.3},{"n":"Carlos Barron","o":2,"j":6,"r":33,"h":5.5},{"n":"Ian Shoemake","o":2,"j":7,"r":29,"h":3.3},{"n":"Antwon-Anyaji Ross","o":2,"j":5,"r":40,"h":3.3},{"n":"Blaise Gorges","o":2,"j":5,"r":40,"h":3.3},{"n":"Victor De Los Santos","o":2,"j":7,"r":29,"h":2.5},{"n":"Danny Morales","o":2,"j":5,"r":40,"h":2.5},{"n":"Antony Hook","o":2,"j":6,"r":33,"h":2.3},{"n":"Daniel Attaiekpo","o":1,"j":7,"r":14,"h":2.8},{"n":"Correy Pierre","o":1,"j":9,"r":11,"h":2},{"n":"Carver Sebastien","o":1,"j":9,"r":11,"h":1.5},{"n":"Wade Woodard","o":1,"j":3,"r":33,"h":1.3},{"n":"Noah Mahmood","o":1,"j":3,"r":33,"h":1.3},{"n":"Ian Yassa","o":1,"j":4,"r":25,"h":1},{"n":"Blaise Richardson","o":1,"j":5,"r":20,"h":1},{"n":"Matthew Randle","o":1,"j":2,"r":50,"h":1}]},"FortWorth":{"jobs":30,"matOver":6,"pct":20,"totOver":14,"cut":4,"movers":[{"n":"Ryder Bell","o":3,"j":9,"r":33,"h":8.8},{"n":"Timothy Linton","o":2,"j":8,"r":25,"h":7},{"n":"Nikolas Basiliadis","o":2,"j":5,"r":40,"h":5.8},{"n":"Kenan Harris","o":2,"j":4,"r":50,"h":3.5},{"n":"Clyde Deah","o":1,"j":4,"r":25,"h":5},{"n":"David Herrera","o":1,"j":6,"r":17,"h":2.5},{"n":"Andrew Morris","o":1,"j":4,"r":25,"h":2},{"n":"Devan Bryant","o":1,"j":5,"r":20,"h":2},{"n":"Sullivan Lowe","o":1,"j":4,"r":25,"h":2},{"n":"Robert Dudley","o":1,"j":7,"r":14,"h":1}]},"Garland":{"jobs":19,"matOver":5,"pct":26,"totOver":10,"cut":4,"movers":[{"n":"Nicholas Griffin","o":2,"j":6,"r":33,"h":4.8},{"n":"Mitchell Staring","o":2,"j":5,"r":40,"h":4.3},{"n":"Jaleel Bourque","o":2,"j":5,"r":40,"h":4.3},{"n":"Jamal Johnson","o":2,"j":5,"r":40,"h":3.8},{"n":"Ryan Lara","o":1,"j":2,"r":50,"h":2.8},{"n":"Marcus Patterson","o":1,"j":6,"r":17,"h":1.8},{"n":"Austin Case","o":1,"j":2,"r":50,"h":1.8},{"n":"Dustin Milam","o":1,"j":7,"r":14,"h":1.5},{"n":"Evan Fowlkes","o":1,"j":2,"r":50,"h":1.5}]},"Tampa":{"jobs":14,"matOver":5,"pct":36,"totOver":7,"cut":2,"movers":[{"n":"David Sanchez","o":3,"j":4,"r":75,"h":2},{"n":"Sloan Kraus","o":2,"j":3,"r":67,"h":4},{"n":"Clem Brown","o":1,"j":4,"r":25,"h":3.5},{"n":"Connor Legro","o":1,"j":2,"r":50,"h":1},{"n":"Trevor Benjamin","o":1,"j":5,"r":20,"h":1},{"n":"Stephen Crilly","o":1,"j":4,"r":25,"h":1},{"n":"Ronald Peterson","o":1,"j":5,"r":20,"h":0.5}]}};
+
+const META = {
+  Dallas:{label:"North Dallas",anchor:"dal"},
+  McKinney:{label:"McKinney",anchor:"mck"},
+  FortWorth:{label:"Fort Worth",anchor:"fw"},
+  Garland:{label:"Garland",anchor:"gar"},
+  Tampa:{label:"Tampa",anchor:"tpa"}
+};
+function pill(r){const c=r>=33?"p-hi":r>=20?"p-mid":"p-lo";return '<span class="pct '+c+'">'+r+'%</span>';}
+const order = Object.keys(DATA).sort((a,b)=> DATA[b].pct-DATA[a].pct || DATA[b].totOver-DATA[a].totOver);
+
+// lead insight
+document.getElementById('lead').innerHTML =
+  '<b>Early Q3 read — Aug 1–9, small samples.</b> Over-run rates cluster 20–36% across branches, but the counts are thin (Tampa 36% is just 5 of 14 jobs). Dallas carries the most over-run volume — 23 jobs, 39 hours long. The names below with 2+ over-runs are the coaching signal, and a few compound with damages or driver safety (Christian Cruz, Alejandro Lona, Calvin Dudley, Mitch Staring). This firms up as the quarter accumulates.';
+
+// region table
+let rt = '<tr><th>Branch</th><th class="r">Jobs</th><th>Over-run rate</th><th class="r">Over-run jobs</th><th class="r">Hrs long</th><th class="r">Coaching (worst 25%)</th></tr>';
+order.forEach(k=>{const d=DATA[k];rt+='<tr><td><a href="#'+META[k].anchor+'"><b>'+META[k].label+'</b></a></td><td class="r num">'+d.jobs+'</td><td>'+pill(d.pct)+'</td><td class="r num">'+d.matOver+'</td><td class="r num">'+d.totOver+'</td><td class="r num">'+d.cut+' movers</td></tr>';});
+document.getElementById('region').innerHTML = rt;
+
+// nav
+document.getElementById('nav').innerHTML = order.map(k=>'<a href="#'+META[k].anchor+'">'+META[k].label+'</a>').join('');
+
+// branch sections
+let bh='';
+order.forEach(k=>{
+  const d=DATA[k], m=META[k];
+  const worst=d.movers.slice(0,d.cut), rest=d.movers.slice(d.cut);
+  bh+='<div class="branch" id="'+m.anchor+'"><h2>'+m.label+'</h2>';
+  bh+='<div class="bstat">'+
+      '<div class="s"><b>'+d.jobs+'</b>Aug 1–9 jobs</div>'+
+      '<div class="s"><b>'+d.pct+'%</b>over-run rate</div>'+
+      '<div class="s"><b>'+d.matOver+'</b>jobs ran long</div>'+
+      '<div class="s"><b>'+d.totOver+'</b>total hrs over estimate</div>'+
+      '<div class="s"><b>'+d.movers.length+'</b>movers with over-runs</div>'+
+      '</div>';
+  // focus box
+  bh+='<div class="focus"><h3>Coaching priority — 2+ over-runs ('+worst.length+')</h3>';
+  bh+='<table><tr><th>Mover</th><th>Over-run rate</th><th class="r">Long / jobs</th><th class="r">Hrs long</th></tr>';
+  worst.forEach(p=>{bh+='<tr class="worst"><td><b>'+p.n+'</b>'+(p.j<3?'<span class="tag">small sample</span>':'')+'</td><td>'+pill(p.r)+'</td><td class="r num">'+p.o+' / '+p.j+'</td><td class="r num">+'+p.h+'h</td></tr>';});
+  bh+='</table></div>';
+  // full roster
+  bh+='<details><summary>View the full roster ('+d.movers.length+' movers with an over-run)</summary>';
+  bh+='<table><tr><th>#</th><th>Mover</th><th>Over-run rate</th><th class="r">Long / jobs</th><th class="r">Hrs long</th></tr>';
+  d.movers.forEach((p,i)=>{bh+='<tr'+(i<d.cut?' class="worst"':'')+'><td class="num">'+(i+1)+'</td><td>'+p.n+'</td><td>'+pill(p.r)+'</td><td class="r num">'+p.o+' / '+p.j+'</td><td class="r num">+'+p.h+'h</td></tr>';});
+  bh+='</table></details></div>';
+});
+document.getElementById('branches').innerHTML = bh;
+</script>

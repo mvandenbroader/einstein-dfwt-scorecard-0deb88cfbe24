@@ -1,0 +1,125 @@
+<meta charset="utf-8">
+<title>Damage Repeat Offenders — DFWT Drill-Down</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --bg:#f5f6f8;--panel:#fff;--panel2:#f0f2f5;--line:#e2e5ea;
+    --ink:#1a1d24;--ink2:#4a515e;--ink3:#8a909c;
+    --orange:#ef8b22;--navy:#1b3a5c;
+    --sg:#1f8f5f;--g:#2f9be0;--watch:#d9932a;--r:#d64a3f;
+    --sg-bg:#e3f4ec;--watch-bg:#fbf0dd;--r-bg:#fbe6e4;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#0f1115;--panel:#171a21;--panel2:#1d2129;--line:#2a2f3a;
+      --ink:#e8eaed;--ink2:#a8adb8;--ink3:#6f7683;
+      --sg-bg:rgba(31,143,95,.16);--watch-bg:rgba(217,147,42,.18);--r-bg:rgba(214,74,63,.18);}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.5}
+  .wrap{max-width:1080px;margin:0 auto;padding:30px 26px 90px}
+  .top{border-bottom:2px solid var(--orange);padding-bottom:14px;margin-bottom:18px}
+  .eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);font-weight:800;margin-bottom:3px}
+  h1{margin:0;font-size:24px;font-weight:800;letter-spacing:-.01em;color:var(--navy)}
+  @media (prefers-color-scheme:dark){h1{color:var(--ink)}}
+  .sub{font-size:12.5px;color:var(--ink3);margin-top:4px}
+  .insight{background:var(--r-bg);border-left:3px solid var(--r);border-radius:0 8px 8px 0;padding:12px 16px;margin:18px 0;font-size:14px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:18px 0 6px}
+  .bc{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:12px 14px;border-top:3px solid var(--line)}
+  .bc.hot{border-top-color:var(--r)} .bc.warm{border-top-color:var(--watch)} .bc.cool{border-top-color:var(--sg)}
+  .bc .n{font-size:15px;font-weight:800}
+  .bc .big{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums;margin-top:2px}
+  .bc .d{font-size:11.5px;color:var(--ink3);margin-top:1px}
+  .bc .d b{color:var(--ink2)}
+  h2{font-size:17px;font-weight:800;margin:38px 0 2px;color:var(--navy)}
+  @media (prefers-color-scheme:dark){h2{color:var(--ink)}}
+  h2 .meta{font-size:12.5px;font-weight:600;color:var(--ink3);margin-left:8px}
+  .binsight{font-size:13px;color:var(--ink2);margin:6px 0 12px;border-left:2px solid var(--orange);padding-left:12px}
+  .focus{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--r);border-radius:0 11px 11px 0;padding:6px 16px 10px;margin-bottom:8px}
+  .focuslab{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--r);padding:8px 0 2px}
+  table{width:100%;border-collapse:collapse;margin:6px 0;font-size:13px}
+  th{text-align:left;color:var(--ink3);font-size:10px;text-transform:uppercase;letter-spacing:.05em;font-weight:700;padding:6px 8px;border-bottom:1px solid var(--line)}
+  th.r,td.r{text-align:right}
+  td{padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  .rank{color:var(--ink3);font-weight:700;width:24px}
+  .cnt{display:inline-block;min-width:26px;text-align:center;font-weight:800;padding:1px 7px;border-radius:20px;font-variant-numeric:tabular-nums}
+  .c-hi{background:var(--r-bg);color:var(--r)} .c-mid{background:var(--watch-bg);color:var(--watch)} .c-lo{background:var(--panel2);color:var(--ink2)}
+  .cost{font-variant-numeric:tabular-nums;font-weight:600}
+  .cost.out{color:var(--r);font-weight:800}
+  details{margin:4px 0}
+  summary{cursor:pointer;font-size:12.5px;color:var(--g);font-weight:700;padding:8px 0;list-style:none;display:flex;align-items:center;gap:6px}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:'▸';display:inline-block;transition:transform .15s}
+  details[open] summary::before{transform:rotate(90deg)}
+  .muted{color:var(--ink3);font-size:12px}
+  a{color:var(--g);text-decoration:none}
+</style>
+
+<div class="wrap">
+<div class="top">
+  <div class="eyebrow">DFWT Damage Report · Q3 2026</div>
+  <h1>Damage Repeat Offenders</h1>
+  <div class="sub">Source: All Damages Board · window = Date of Move <b>Aug 1–9, 2026</b> (Q3-to-date, today excluded) · 38 DFWT line items · pulled 8/10</div>
+</div>
+
+<div class="insight"><b>Two branches account for most of the region's damage.</b> Dallas and McKinney together are <b>346 of 468 damages (74%)</b> and <b>$91.7K of $108.5K in cost (85%)</b>. Fort Worth, Garland, and Tampa are comparatively clean. Damage reduction is the single biggest lever on customer experience.</div>
+
+<div class="cards">
+  <div class="bc hot"><div class="n">Dallas</div><div class="big">17</div><div class="d">$3,694 · 12 movers</div></div>
+  <div class="bc warm"><div class="n">McKinney</div><div class="big">11</div><div class="d">$1,773 · Cruz owns 6</div></div>
+  <div class="bc warm"><div class="n">Fort Worth</div><div class="big">9</div><div class="d">$1,172 · ~1 move</div></div>
+  <div class="bc cool"><div class="n">Garland</div><div class="big">1</div><div class="d">$200 · one crew job</div></div>
+  <div class="bc cool"><div class="n">Tampa</div><div class="big">0</div><div class="d">clean</div></div>
+</div>
+<p class="muted"><b>Read the counts carefully:</b> single incidents are logged as multiple line items (a 6-part damage on one move = 6 rows), and unprocessed intake-form rows carry no mover. Per-mover counts below are the coachable signal; branch totals include both. Est $ (open claims) — Actual $ settles later.</p>
+
+<!-- DALLAS -->
+<h2 id="dal" style="scroll-margin-top:14px">Dallas <span class="meta">17 line items · $3,694</span></h2>
+<div class="binsight">Highest volume in the region, spread across ~12 movers — no single dominant offender yet. Caleb Simien tops the count (4). <b>Calvin Dudley (3) also sits at the bottom of driver safety (score 0)</b> — a compounding case worth coaching first. (4 unprocessed intake rows carry no mover.)</div>
+<table>
+<tr><th>Mover</th><th class="r">Damages</th></tr>
+<tr><td>Caleb Simien</td><td class="r">4</td></tr>
+<tr><td>Nicholas Taylor</td><td class="r">3</td></tr>
+<tr><td>Wyatt Henry</td><td class="r">3</td></tr>
+<tr><td>Calvin Dudley</td><td class="r">3</td></tr>
+<tr><td>Tadeus Perryman</td><td class="r">3</td></tr>
+<tr><td>Alejandro Lona</td><td class="r">3</td></tr>
+<tr><td>Devin Horace</td><td class="r">2</td></tr>
+<tr><td>Christian Mosley</td><td class="r">2</td></tr>
+<tr><td>Cameron Richner</td><td class="r">2</td></tr>
+<tr><td>Jacob Carnicle</td><td class="r">2</td></tr>
+</table>
+<p class="muted">Plus 7 movers with 1 each. Some counts are multi-part single moves (Bethany Zakielarz job = 3 items, Torey Pellegrini = 2).</p>
+
+<!-- McKINNEY -->
+<h2 id="mck" style="scroll-margin-top:14px">McKinney <span class="meta">11 line items · $1,773</span></h2>
+<div class="binsight"><b>Christian Cruz is on 6 of the 8 mover-attributed damages</b> — the clearest single repeat offender in the region this window, and the one name to act on at McKinney. Everyone else is 1–3. (3 unprocessed intake rows.)</div>
+<table>
+<tr><th>Mover</th><th class="r">Damages</th></tr>
+<tr><td>Christian Cruz</td><td class="r">6</td></tr>
+<tr><td>Carver Sebastien</td><td class="r">3</td></tr>
+<tr><td>Taleik Crews</td><td class="r">2</td></tr>
+</table>
+<p class="muted">Plus 9 movers with 1 each (Woodard, Hook, Noble, Mahmood, Pierre, Barron, Gorges, Shoemake, Ross).</p>
+
+<!-- FORT WORTH -->
+<h2 id="fw" style="scroll-margin-top:14px">Fort Worth <span class="meta">9 line items · $1,172 · ~1 move</span></h2>
+<div class="binsight"><b>Not a repeat-offender pattern — one bad move.</b> The Smith job on 8/2 generated 6 damages (crew Kenan Harris + Ryder Bell), plus an onsite settlement and 2 unprocessed form rows. Review that one move; the branch isn’t systemically damaging.</div>
+<table>
+<tr><th>Mover</th><th class="r">Damages</th></tr>
+<tr><td>Kenan Harris (Smith move)</td><td class="r">6</td></tr>
+<tr><td>Ryder Bell (Smith move)</td><td class="r">6</td></tr>
+</table>
+<p class="muted">Both movers were the crew on the same 6-damage move — count them as one incident, not twelve.</p>
+
+<!-- GARLAND -->
+<h2 id="gar" style="scroll-margin-top:14px">Garland <span class="meta">1 line item · $200</span></h2>
+<div class="binsight">One damage all window, on a 4-person crew job (Jaleel Bourque, Barak Reffell, Marcus Patterson, Mitchell Staring). Effectively clean.</div>
+
+<!-- TAMPA -->
+<h2 id="tpa" style="scroll-margin-top:14px">Tampa <span class="meta">0 damages</span></h2>
+<div class="clean"><b>Clean.</b> No damages with a Date of Move in Aug 1–9 — consistent with its strong Q2 finish and top Games score.</div>
+
+<p class="muted" style="margin-top:30px"><b>Notes:</b> Window = Date of Move Aug 1–9, 2026 (Q3-to-date, today excluded — not finalized). Single incidents split into multiple line items, so branch totals overstate incident counts; per-mover counts are the coaching signal. Unprocessed intake-form rows (9 across DFWT) carry no mover. A multi-mover damage counts once per named mover. Est $ shown (claims still open; Actual $ settles later). A 9-day sample — the worst-25% view firms up as the quarter accumulates. · Part of the <a href="index.html">Road to A+ Command Center</a>.</p>
+</div>
