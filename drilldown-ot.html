@@ -36,9 +36,8 @@
   .p-hi{background:var(--r-bg);color:var(--r)} .p-mid{background:var(--watch-bg);color:var(--watch)} .p-lo{background:var(--sg-bg);color:var(--sg)}
   .bar{height:9px;background:var(--line);border-radius:5px;overflow:hidden;width:100%;min-width:90px}
   .bar i{display:block;height:100%;border-radius:5px}
-  /* weekly trend */
   .scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
-  table.trend{font-size:11.5px;min-width:820px;margin:0}
+  table.trend{font-size:11.5px;min-width:420px;margin:0}
   table.trend th, table.trend td{padding:5px 7px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--line)}
   table.trend th:first-child, table.trend td:first-child{text-align:left;position:sticky;left:0;background:var(--panel);font-weight:700}
   table.trend thead th{background:var(--panel2)}
@@ -69,104 +68,98 @@
 <div class="top">
   <div class="eyebrow">DFWT Overtime · Q3 2026</div>
   <h1>Overtime (OT) Reporting</h1>
-  <div class="sub">Source: EMMA Weekly Overtime Report · window <b>Aug 1–7, 2026</b> (Q3 wk 1 · Sat–Fri) · refreshes each Monday from EMMA’s CSV export · a direct NOI driver</div>
+  <div class="sub">Source: EMMA Weekly Overtime Report · window <b>Aug 8–14, 2026</b> (Q3 wk 2 · Sat–Fri, last complete week) · refreshes each Monday from EMMA's CSV export · a direct NOI driver</div>
 </div>
 
-<div class="insight"><b>Dallas runs the hottest on OT by a wide margin — 12.4% of hours.</b> That's a real drag on a branch already carrying the lowest gross margin in the region. Tampa is lowest at 4.3% (a symptom of idle trucks, not efficiency). OT is one of the most controllable NOI levers: every point of OT rate is money off the branch's bottom line.</div>
+<div class="insight"><b>Two branches over the 10% flag this week — Dallas (17.7%) and Fort Worth (13.4%).</b> Dallas stays the region's OT problem but <b>improved from 22.6%</b> last week. <b>Fort Worth crossed over the line</b> (5.6% → 13.4%), driven almost entirely by two movers — Kenan Harris (38h) and Elijah Rasberry (28h). <b>McKinney fixed it</b> — down from 12.5% to 3.9%. OT is one of the most controllable NOI levers: every point of OT rate is money off the branch's bottom line.</div>
 
-<h2>Q3-to-date OT by branch — worst rate first (week of Aug 1–7)</h2>
+<h2>OT by branch — worst rate first (week of Aug 8–14)</h2>
 <table>
 <tr><th>Branch</th><th class="r">OT hrs</th><th class="r">Total hrs</th><th>OT rate</th><th style="width:200px">vs region</th></tr>
-<tr><td class="bn">North Dallas</td><td class="r num">431.9</td><td class="r num">1,908.9</td><td><span class="pct p-hi">22.6%</span></td><td><span class="bar"><i style="width:100%;background:var(--r)"></i></span></td></tr>
-<tr><td class="bn">McKinney</td><td class="r num">91.8</td><td class="r num">736.7</td><td><span class="pct p-hi">12.5%</span></td><td><span class="bar"><i style="width:55%;background:var(--r)"></i></span></td></tr>
-<tr><td class="bn">Fort Worth</td><td class="r num">26.0</td><td class="r num">465.5</td><td><span class="pct p-lo">5.6%</span></td><td><span class="bar"><i style="width:25%;background:var(--sg)"></i></span></td></tr>
-<tr><td class="bn">Garland</td><td class="r num">4.8</td><td class="r num">321.9</td><td><span class="pct p-lo">1.5%</span></td><td><span class="bar"><i style="width:7%;background:var(--sg)"></i></span></td></tr>
-<tr><td class="bn">Tampa</td><td class="r num">0.0</td><td class="r num">192.5</td><td><span class="pct p-lo">0.0%</span></td><td><span class="bar"><i style="width:1%;background:var(--sg)"></i></span></td></tr>
+<tr><td class="bn">North Dallas</td><td class="r num">243.6</td><td class="r num">1,376</td><td><span class="pct p-hi">17.7%</span></td><td><span class="bar"><i style="width:100%;background:var(--r)"></i></span></td></tr>
+<tr><td class="bn">Fort Worth</td><td class="r num">73.6</td><td class="r num">549</td><td><span class="pct p-hi">13.4%</span></td><td><span class="bar"><i style="width:76%;background:var(--r)"></i></span></td></tr>
+<tr><td class="bn">Garland</td><td class="r num">11.6</td><td class="r num">242</td><td><span class="pct p-lo">4.8%</span></td><td><span class="bar"><i style="width:27%;background:var(--sg)"></i></span></td></tr>
+<tr><td class="bn">Tampa</td><td class="r num">14.3</td><td class="r num">304</td><td><span class="pct p-lo">4.7%</span></td><td><span class="bar"><i style="width:27%;background:var(--sg)"></i></span></td></tr>
+<tr><td class="bn">McKinney</td><td class="r num">21.1</td><td class="r num">541</td><td><span class="pct p-lo">3.9%</span></td><td><span class="bar"><i style="width:22%;background:var(--sg)"></i></span></td></tr>
 </table>
-<p class="muted">OT rate = OT hours ÷ total hours for the branch that week. Bands: green ≤6%, amber 6–10%, red &gt;10%. <b>North Dallas (22.6%) and McKinney (12.5%) are over the 10% flag</b> — and Dallas is nearly double any other branch.</p>
+<p class="muted">OT rate = OT hours ÷ total hours for the branch that week. Bands: green ≤6%, amber 6–10%, red &gt;10%. <b>North Dallas (17.7%) and Fort Worth (13.4%) are over the 10% flag.</b> McKinney's drop from 12.5% to 3.9% is the week's biggest move.</p>
 
-<h2>Worst 25% of movers by OT — week of Aug 1–7, 2026</h2>
-<p class="muted" style="margin-bottom:10px">Now pulled in one shot from <b>Matisen’s new CSV export</b> (no more manual scrape). Worst 25% = the top quarter of each branch’s movers by OT hours that week (branches with fewer in OT show all who logged any).</p>
-<div class="replegend"><b>No repeat flags yet.</b> Aug 1–7 is the first Q3 week, so there’s no prior Q3 week to compare against — the repeat flag (worst-25% two weeks running) starts next Monday. <b>Watch North Dallas:</b> Cameron Richner (63.9h) and Zel Johnson (54.7h) logged extreme single-week OT — worth checking those schedules directly.</div>
+<h2>Worst 25% of movers by OT — week of Aug 8–14, 2026</h2>
+<p class="muted" style="margin-bottom:10px">Pulled in one shot from Matisen's CSV export. Worst 25% = the top quarter of each branch's movers by OT hours that week (branches with fewer in OT show all who logged any).</p>
+<div class="replegend"><b>Repeat flag is now live.</b> A mover flagged <span style="color:var(--r);font-weight:800">red</span> was in the worst-25% for OT <b>two weeks running</b> (Aug 1–7 and Aug 8–14) — a chronic-OT signal, not a one-off heavy week. <b>North Dallas has 5 repeats</b> (Zel Johnson, Jru Washington, Crawfish Dudley, Tadeus Perryman, Cruz Ventura); <b>Fort Worth has 2</b> (Timothy Linton, Ryder Bell).</div>
 <div class="wk">
   <div class="wkb">
-    <div class="wkh">North Dallas <span>· top 13 of 51</span></div>
+    <div class="wkh">North Dallas <span>· 9 in OT of 50</span></div>
     <table class="wkt">
-      <tr><td>Cameron Richner</td><td class="r num">63.9</td><td><span class="obar"><i style="width:100%"></i></span></td></tr>
-      <tr><td>Zel Johnson</td><td class="r num">54.7</td><td><span class="obar"><i style="width:100%"></i></span></td></tr>
-      <tr><td>Aedan Fucile</td><td class="r num">38.8</td><td><span class="obar"><i style="width:97%"></i></span></td></tr>
-      <tr><td>Crawfish Dudley</td><td class="r num">36.2</td><td><span class="obar"><i style="width:90%"></i></span></td></tr>
-      <tr><td>Aleks Lona</td><td class="r num">30.9</td><td><span class="obar"><i style="width:77%"></i></span></td></tr>
-      <tr><td>Eduardo Trevino</td><td class="r num">28.1</td><td><span class="obar"><i style="width:70%"></i></span></td></tr>
-      <tr><td>Jax Seals</td><td class="r num">27.4</td><td><span class="obar"><i style="width:68%"></i></span></td></tr>
-      <tr><td>Jru Washington</td><td class="r num">27.3</td><td><span class="obar"><i style="width:68%"></i></span></td></tr>
-      <tr><td>Devin Horace</td><td class="r num">17.2</td><td><span class="obar"><i style="width:43%"></i></span></td></tr>
-      <tr><td>Gabe Tello</td><td class="r num">14.9</td><td><span class="obar"><i style="width:37%"></i></span></td></tr>
-      <tr><td>Justin Stepp</td><td class="r num">13.7</td><td><span class="obar"><i style="width:34%"></i></span></td></tr>
-      <tr><td>Tadeus Perryman</td><td class="r num">13.4</td><td><span class="obar"><i style="width:34%"></i></span></td></tr>
-      <tr><td>Cruz Ventura</td><td class="r num">11.6</td><td><span class="obar"><i style="width:29%"></i></span></td></tr>
+      <tr class="rep"><td>Zel Johnson<span class="repbadge">2 WKS</span></td><td class="r num">48.2</td><td><span class="obar"><i style="width:100%"></i></span></td></tr>
+      <tr><td>Von Richardson</td><td class="r num">42.4</td><td><span class="obar"><i style="width:100%"></i></span></td></tr>
+      <tr class="rep"><td>Jru Washington<span class="repbadge">2 WKS</span></td><td class="r num">40.3</td><td><span class="obar"><i style="width:100%"></i></span></td></tr>
+      <tr><td>Caleb Simien</td><td class="r num">37.6</td><td><span class="obar"><i style="width:94%"></i></span></td></tr>
+      <tr class="rep"><td>Crawfish Dudley<span class="repbadge">2 WKS</span></td><td class="r num">34.7</td><td><span class="obar"><i style="width:87%"></i></span></td></tr>
+      <tr class="rep"><td>Tadeus Perryman<span class="repbadge">2 WKS</span></td><td class="r num">29.7</td><td><span class="obar"><i style="width:74%"></i></span></td></tr>
+      <tr class="rep"><td>Cruz Ventura<span class="repbadge">2 WKS</span></td><td class="r num">5.7</td><td><span class="obar"><i style="width:14%"></i></span></td></tr>
+      <tr><td>Noah Halpin</td><td class="r num">4.1</td><td><span class="obar"><i style="width:10%"></i></span></td></tr>
     </table>
   </div>
   <div class="wkb">
-    <div class="wkh">McKinney <span>· top 6 of 24</span></div>
+    <div class="wkh">Fort Worth <span>· 5 in OT of 16</span></div>
     <table class="wkt">
-      <tr><td>Antwon-Anyaji Ross</td><td class="r num">20.2</td><td><span class="obar"><i style="width:50%"></i></span></td></tr>
-      <tr><td>Correy Pierre</td><td class="r num">18.6</td><td><span class="obar"><i style="width:46%"></i></span></td></tr>
-      <tr><td>Carlos Barron</td><td class="r num">12.3</td><td><span class="obar"><i style="width:31%"></i></span></td></tr>
-      <tr><td>Christian Cruz</td><td class="r num">9.6</td><td><span class="obar"><i style="width:24%"></i></span></td></tr>
-      <tr><td>Piletji Mautjana</td><td class="r num">8.7</td><td><span class="obar"><i style="width:22%"></i></span></td></tr>
-      <tr><td>Antony Hook</td><td class="r num">8.1</td><td><span class="obar"><i style="width:20%"></i></span></td></tr>
+      <tr><td>Kenan Harris</td><td class="r num">38.2</td><td><span class="obar"><i style="width:96%"></i></span></td></tr>
+      <tr><td>Elijah Rasberry</td><td class="r num">28.3</td><td><span class="obar"><i style="width:71%"></i></span></td></tr>
+      <tr class="rep"><td>Timothy Linton<span class="repbadge">2 WKS</span></td><td class="r num">3.6</td><td><span class="obar"><i style="width:9%"></i></span></td></tr>
+      <tr><td>Nikolas Basiliadis</td><td class="r num">2.0</td><td><span class="obar"><i style="width:5%"></i></span></td></tr>
+      <tr class="rep"><td>Ryder Bell<span class="repbadge">2 WKS</span></td><td class="r num">1.6</td><td><span class="obar"><i style="width:4%"></i></span></td></tr>
     </table>
   </div>
   <div class="wkb">
-    <div class="wkh">Fort Worth <span>· top 4 of 15</span></div>
+    <div class="wkh">McKinney <span>· 1 in OT of 23</span></div>
     <table class="wkt">
-      <tr><td>Ryder Bell</td><td class="r num">11.8</td><td><span class="obar"><i style="width:30%"></i></span></td></tr>
-      <tr><td>Ernesto Padilla</td><td class="r num">6.8</td><td><span class="obar"><i style="width:17%"></i></span></td></tr>
-      <tr><td>Timothy Linton</td><td class="r num">4.9</td><td><span class="obar"><i style="width:12%"></i></span></td></tr>
-      <tr><td>Drew Morris</td><td class="r num">2.1</td><td><span class="obar"><i style="width:5%"></i></span></td></tr>
+      <tr><td>Tre Randle</td><td class="r num">21.1</td><td><span class="obar"><i style="width:53%"></i></span></td></tr>
     </table>
   </div>
   <div class="wkb">
-    <div class="wkh">Garland <span>· 1 mover in OT</span></div>
+    <div class="wkh">Tampa <span>· 2 in OT of 11</span></div>
     <table class="wkt">
-      <tr><td>Mitch Staring</td><td class="r num">4.8</td><td><span class="obar"><i style="width:12%"></i></span></td></tr>
+      <tr><td>Benji Benjamin</td><td class="r num">8.8</td><td><span class="obar"><i style="width:22%"></i></span></td></tr>
+      <tr><td>David Sanchez</td><td class="r num">5.5</td><td><span class="obar"><i style="width:14%"></i></span></td></tr>
     </table>
   </div>
   <div class="wkb">
-    <div class="wkh">Tampa <span>· 0 movers in OT</span></div>
-    <p class="muted" style="padding:8px 2px">No overtime this week — cleanest in the region.</p>
+    <div class="wkh">Garland <span>· 2 in OT of 12</span></div>
+    <table class="wkt">
+      <tr><td>Brandon Vanlehn</td><td class="r num">6.4</td><td><span class="obar"><i style="width:16%"></i></span></td></tr>
+      <tr><td>Jamal Johnson</td><td class="r num">5.2</td><td><span class="obar"><i style="width:13%"></i></span></td></tr>
+    </table>
   </div>
 </div>
-<p class="muted">Bars scaled to a 40-hr week (values above 40 OT hrs cap the bar). Some names here also show up in damages or driver-safety — once OT and those drill-downs share the same period, a mover who's worst-25% in OT <em>and</em> another category flows onto the Critical Coaching list automatically. (OT is weekly; damages/safety were Q2 — so hold the cross-comparison until periods align.)</p>
+<p class="muted">Bars scaled to a 40-hr week (values above 40 OT hrs cap the bar). <b>Kenan Harris (FW)</b> compounds hard — 38h OT this week on top of an estimate + damages flag. Movers who are worst-25% in OT <em>and</em> another category flow onto the <a href="drilldown-critical-coaching.html">Critical Coaching</a> list.</p>
 
 <h2>Weekly trend — OT hours by branch (Q3 Sat–Fri weeks)</h2>
 <div class="scroll">
 <table class="trend">
 <thead>
-<tr><th>Branch</th><th>8/1</th></tr>
+<tr><th>Branch</th><th>8/1</th><th>8/8</th></tr>
 </thead>
 <tbody>
-<tr><td>North Dallas</td><td class="hot">432</td></tr>
-<tr><td>McKinney</td><td class="hot">92</td></tr>
-<tr><td>Fort Worth</td><td>26</td></tr>
-<tr><td>Garland</td><td>5</td></tr>
-<tr><td>Tampa</td><td class="cool">0</td></tr>
+<tr><td>North Dallas</td><td class="hot">432</td><td class="hot">244</td></tr>
+<tr><td>Fort Worth</td><td>26</td><td class="hot">74</td></tr>
+<tr><td>McKinney</td><td class="hot">92</td><td>21</td></tr>
+<tr><td>Garland</td><td>5</td><td>12</td></tr>
+<tr><td>Tampa</td><td class="cool">0</td><td>14</td></tr>
 </tbody>
 </table>
 </div>
-<p class="muted">Q3 trend resets here — a new column lands each Monday from the export. (Q2’s 13-week history is archived.)</p>
-<p class="muted">OT hours per week (rounded). Red = a heavy week for that branch; grey = near-zero. Note the fleet-wide dip in the 7/4 holiday week, and Dallas's sustained 300+ hour weeks through late May–June.</p>
+<p class="muted">OT hours per week (rounded). Red = a heavy week for that branch. A new column lands each Monday from the export. Note Dallas trending down (432 → 244) while Fort Worth jumped (26 → 74).</p>
 
 <div class="callout">
 <h3>How to read this for the branches</h3>
 <ul>
-<li><b>Dallas is the OT story.</b> 2,662 OT hours in Q2 — more than the other four branches combined (1,518). It ran 300+ OT hours a week for much of May–June. On the lowest-margin branch in the region, that's the clearest single cost lever to attack.</li>
-<li><b>Tampa's low OT isn't a win.</b> 4.3% looks great, but it's low because trucks sit idle — it's the utilization problem showing up from another angle, not efficient scheduling.</li>
-<li><b>McKinney is genuinely lean on OT (5.3%)</b> despite its other issues — worth acknowledging.</li>
-<li><b>OT ties straight to NOI.</b> This feeds the Phase 3 NOI leading-indicators view: revenue pace, OT, damages, and TUR together predict the monthly NOI close.</li>
+<li><b>Dallas is still the OT story</b> (17.7%), but it's moving the right direction — down from 22.6%. Five movers are on chronic 2-week OT; those schedules are the place to work.</li>
+<li><b>Fort Worth needs an immediate look.</b> It jumped from 5.6% to 13.4% in one week, and it's two names — Kenan Harris (38h) and Elijah Rasberry (28h). A targeted fix, not a systemic one.</li>
+<li><b>McKinney fixed its OT</b> — 12.5% down to 3.9%. Worth acknowledging with the branch.</li>
+<li><b>OT ties straight to NOI.</b> Every point of OT rate is margin off the branch's bottom line — the most controllable weekly cost lever on the board.</li>
 </ul>
 </div>
 
-<p class="muted" style="margin-top:26px"><b>Notes:</b> EMMA's Weekly Overtime Report pulls one Sat–Fri week at a time, so Q2 here is 13 weeks summed per branch (May 2 – Jul 31; the Apr 25–May 1 partial week is excluded). Going forward this updates by pulling just the previous week and adding it. "North Dallas" is the Dallas branch. OT rate is on Rippling/total hours as EMMA reports them. · Part of the <a href="index.html">Road to A+ Command Center</a>.</p>
+<p class="muted" style="margin-top:26px"><b>Notes:</b> EMMA's Weekly Overtime Report pulls one Sat–Fri week at a time; this shows the last complete week (Aug 8–14). Going forward it updates by pulling just the previous week and adding a trend column. "North Dallas" is the Dallas branch. OT rate is on Rippling/total hours as EMMA reports them. Repeat flag = worst-25% in OT two weeks running. · Part of the <a href="index.html">Road to A+ Command Center</a>.</p>
 </div>

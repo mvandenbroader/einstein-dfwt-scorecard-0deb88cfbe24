@@ -24,7 +24,7 @@
   h1{margin:0;font-size:24px;font-weight:800;letter-spacing:-.01em;color:var(--navy)}
   @media (prefers-color-scheme:dark){h1{color:var(--ink)}}
   .sub{font-size:12.5px;color:var(--ink3);margin-top:4px}
-  .insight{background:var(--r-bg);border-left:3px solid var(--r);border-radius:0 8px 8px 0;padding:12px 16px;margin:18px 0;font-size:14px}
+  .insight{background:var(--sg-bg);border-left:3px solid var(--sg);border-radius:0 8px 8px 0;padding:12px 16px;margin:18px 0;font-size:14px}
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:18px 0 6px}
   .bc{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:12px 14px;border-top:3px solid var(--line)}
   .bc.hot{border-top-color:var(--r)} .bc.warm{border-top-color:var(--watch)} .bc.cool{border-top-color:var(--sg)}
@@ -36,25 +36,16 @@
   h2 .meta{font-size:12.5px;font-weight:600;color:var(--ink3);margin-left:8px}
   .binsight{font-size:13px;color:var(--ink2);margin:6px 0 12px;border-left:2px solid var(--orange);padding-left:12px}
   .clean{background:var(--sg-bg);border-left:3px solid var(--sg);border-radius:0 8px 8px 0;padding:10px 14px;font-size:13.5px;margin:6px 0 4px}
-  /* compounding section */
-  .compound{background:var(--panel);border:1px solid var(--flag);border-radius:12px;padding:18px 20px;margin:22px 0}
-  .compound h2{margin:0 0 2px;color:var(--flag)}
-  @media (prefers-color-scheme:dark){.compound h2{color:var(--flag)}}
-  .compound .lead{font-size:13.5px;color:var(--ink2);margin:4px 0 10px}
   table{width:100%;border-collapse:collapse;margin:6px 0;font-size:13px}
   th{text-align:left;color:var(--ink3);font-size:10px;text-transform:uppercase;letter-spacing:.05em;font-weight:700;padding:6px 8px;border-bottom:1px solid var(--line)}
   th.r,td.r{text-align:right}
   td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
   tr:last-child td{border-bottom:none}
   .rank{color:var(--ink3);font-weight:700;width:24px}
-  .brc{font-size:11px;font-weight:700;color:var(--ink3)}
   .score{display:inline-block;min-width:34px;text-align:center;font-weight:800;padding:2px 8px;border-radius:20px;font-variant-numeric:tabular-nums}
   .s-sev{background:var(--r-bg);color:var(--r)} .s-mod{background:var(--watch-bg);color:var(--watch)}
   .bar{height:8px;background:var(--line);border-radius:5px;overflow:hidden;width:150px;display:inline-block;vertical-align:middle}
   .bar i{display:block;height:100%;border-radius:5px}
-  .cat{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:5px}
-  .cat-safety{background:var(--g-bg,#e4f1fb);color:var(--g)} .cat-damage{background:var(--r-bg);color:var(--r)}
-  .cat-pending{background:var(--panel2);color:var(--ink3);border:1px dashed var(--line)}
   .muted{color:var(--ink3);font-size:12px}
   a{color:var(--g);text-decoration:none}
   .callout{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:16px 18px;margin:18px 0}
@@ -66,65 +57,65 @@
 <div class="top">
   <div class="eyebrow">DFWT Driver Safety · Q3 2026</div>
   <h1>Driver-Safety Repeat Offenders</h1>
-  <div class="sub">Source: Samsara Safety · Driver Performance · window <b>Aug 1 – Aug 9, 2026</b> (Q3-to-date, through the last complete day) · Safety Score 0–100, violation threshold ≤69 (Einstein standard)</div>
+  <div class="sub">Source: Samsara Safety · Driver Performance · window <b>Aug 1 – Aug 16, 2026</b> (Q3-to-date, today excluded) · Safety Score 0–100, violation threshold ≤69 (Einstein standard)</div>
 </div>
 
-<div class="insight"><b>No branch is below the ≤69 line this pull.</b> Fresh driver-data updates lifted <b>Dallas from 67 to 76</b> (Trevino, Zel Johnson and Washington all cleared the line) and <b>Tampa to a perfect 100</b>. Garland (75) and Dallas (76) are the lowest but both clear — each still carries two individual offenders worth a coaching touch. Fort Worth (99) and Tampa (100) are essentially perfect.</div>
-
+<div style="background:var(--panel2);border-left:3px solid var(--navy);border-radius:0 8px 8px 0;padding:10px 14px;margin:14px 0;font-size:13px"><b>Quarter-to-date (cumulative) view.</b> This page is the repeat-offender roster across the whole quarter (Aug 1 onward). For a single week in isolation, see the command-center card (this week) and its week-by-week list (the trend).</div>
+<div class="insight"><b>No branch is below the ≤69 line.</b> Dallas, McKinney and Garland now cluster together at <b>83</b> (Dallas up from 76, Garland up from 75, McKinney eased from 86 as the window widened); Fort Worth (99) and Tampa (97) stay near-perfect. The coaching signal is at the individual level — <b>McKinney carries 3 offenders, Dallas 2, Garland 1</b>; Fort Worth and Tampa have none.</div>
 
 <div class="cards">
-  <div class="bc warm"><div class="n">Garland</div><div class="big">75</div><div class="d">branch score · 2 offenders</div></div>
-  <div class="bc warm"><div class="n">Dallas</div><div class="big">76</div><div class="d">branch score · up from 67 · 2 offenders</div></div>
-  <div class="bc cool"><div class="n">McKinney</div><div class="big">86</div><div class="d">branch score · 2 offenders</div></div>
-  <div class="bc cool"><div class="n">Fort Worth</div><div class="big">99</div><div class="d">branch score · 0 offenders</div></div>
-  <div class="bc cool"><div class="n">Tampa</div><div class="big">100</div><div class="d">#1 safest · 0 offenders</div></div>
+  <div class="bc warm"><div class="n">McKinney</div><div class="big">83</div><div class="d">branch score · 3 offenders</div></div>
+  <div class="bc warm"><div class="n">Dallas</div><div class="big">83</div><div class="d">branch score · up from 76 · 2 offenders</div></div>
+  <div class="bc warm"><div class="n">Garland</div><div class="big">83</div><div class="d">branch score · up from 75 · 1 offender</div></div>
+  <div class="bc cool"><div class="n">Tampa</div><div class="big">97</div><div class="d">branch score · 0 offenders</div></div>
+  <div class="bc cool"><div class="n">Fort Worth</div><div class="big">99</div><div class="d">#1 safest · 0 offenders</div></div>
 </div>
 <p class="muted">Score bar fills to the driver's safety score (lower = worse). Drivers with too few miles to score reliably are noted, not ranked.</p>
 
-<div class="insight" style="background:var(--r-bg);border-color:var(--r)"><b>Compounding view recomputes with damages.</b> The <a href="drilldown-critical-coaching.html"><b>Critical Coaching Required</b></a> page (worst-25% in safety + damages) still reflects the Q2 damages window — it refreshes once damages is pulled for this same period. This page is the current driver-safety picture.</div>
+<div class="insight" style="background:var(--g-bg);border-color:var(--g)">See the <a href="drilldown-critical-coaching.html"><b>Critical Coaching Required</b></a> page for movers who are worst-tier in 2+ categories (safety, damages, estimate, OT) across the quarter.</div>
 
 <!-- DALLAS -->
-<h2 id="dal" style="scroll-margin-top:14px">Dallas <span class="meta">branch 76 · 41 drivers · 2 offenders ≤69</span></h2>
-<div class="binsight">Up from 67 — three drivers (Trevino, Zel Johnson, Christian Washington) cleared the line after the data updates. Two remain: Calvin Dudley (still at rock bottom) and Joshua Midgette.</div>
+<h2 id="dal" style="scroll-margin-top:14px">Dallas <span class="meta">branch 83 · 41 drivers · 2 offenders ≤69</span></h2>
+<div class="binsight">Up from 76 after the driver-data updates. Two offenders remain — Calvin Dudley still at rock bottom (0), and Joshua Midgette (51, on heavy miles — 877).</div>
 <table>
 <tr><th class="rank">#</th><th>Driver</th><th>Safety score</th><th></th></tr>
 <tr><td class="rank">1</td><td>Calvin (Crawfish) Dudley</td><td><span class="score s-sev">0</span></td><td><span class="bar"><i style="width:1%;background:var(--r)"></i></span></td></tr>
-<tr><td class="rank">2</td><td>Joshua Midgette</td><td><span class="score s-sev">35</span></td><td><span class="bar"><i style="width:35%;background:var(--r)"></i></span></td></tr>
+<tr><td class="rank">2</td><td>Joshua Midgette</td><td><span class="score s-mod">51</span></td><td><span class="bar"><i style="width:51%;background:var(--watch)"></i></span></td></tr>
 </table>
-<p class="muted">JD Coffey shows 0 on only 20 miles — too little data to score, noted not ranked.</p>
+<p class="muted">JD Coffey shows 0 on only 19 miles — too little data to score, noted not ranked.</p>
 
 <!-- McKINNEY -->
-<h2 id="mck" style="scroll-margin-top:14px">McKinney <span class="meta">branch 86 · 19 drivers · 2 offenders ≤69</span></h2>
-<div class="binsight">Healthy branch score (86). Two individual drivers below the line — Sterling slipped since the last read.</div>
+<h2 id="mck" style="scroll-margin-top:14px">McKinney <span class="meta">branch 83 · 19 drivers · 3 offenders ≤69</span></h2>
+<div class="binsight">Eased to 83 as the window widened to two weeks. Three individual drivers below the line — Woodard (0), Sterling (44), and Ross (55, new to the list this window).</div>
 <table>
 <tr><th class="rank">#</th><th>Driver</th><th>Safety score</th><th></th></tr>
 <tr><td class="rank">1</td><td>Wade Woodard</td><td><span class="score s-sev">0</span></td><td><span class="bar"><i style="width:1%;background:var(--r)"></i></span></td></tr>
 <tr><td class="rank">2</td><td>Nicholas Sterling</td><td><span class="score s-sev">44</span></td><td><span class="bar"><i style="width:44%;background:var(--r)"></i></span></td></tr>
+<tr><td class="rank">3</td><td>Elijah Ross</td><td><span class="score s-mod">55</span></td><td><span class="bar"><i style="width:55%;background:var(--watch)"></i></span></td></tr>
 </table>
-<p class="muted">Woodard’s 0 is on 70 light miles. Zach Krodel (Ops Manager) and the mechanic are excluded.</p>
+<p class="muted">Woodard's 0 is on 134 miles. Zach Krodel (Ops Manager) and the mechanic are excluded.</p>
 
 <!-- GARLAND -->
-<h2 id="gar" style="scroll-margin-top:14px">Garland <span class="meta">branch 75 · 10 drivers · 2 offenders</span></h2>
-<div class="binsight">Now the lowest branch score (75), just above the line. Two offenders — Mitch Staring slipped to 33.</div>
+<h2 id="gar" style="scroll-margin-top:14px">Garland <span class="meta">branch 83 · 10 drivers · 1 offender ≤69</span></h2>
+<div class="binsight">Up from 75, and down to a single offender — Mitch Staring (62), improved from prior reads but still below the line.</div>
 <table>
 <tr><th class="rank">#</th><th>Driver</th><th>Safety score</th><th></th></tr>
-<tr><td class="rank">1</td><td>Mitch Staring</td><td><span class="score s-sev">33</span></td><td><span class="bar"><i style="width:33%;background:var(--r)"></i></span></td></tr>
-<tr><td class="rank">2</td><td>Cane Bourque</td><td><span class="score s-mod">55</span></td><td><span class="bar"><i style="width:55%;background:var(--watch)"></i></span></td></tr>
+<tr><td class="rank">1</td><td>Mitch Staring</td><td><span class="score s-mod">62</span></td><td><span class="bar"><i style="width:62%;background:var(--watch)"></i></span></td></tr>
 </table>
-<p class="muted">Staring is also worst-25% in estimate + OT — he’s on the Critical Coaching list.</p>
+<p class="muted">A mechanic shows 0 on 9 miles — excluded (too little data and not a route driver).</p>
 
 <!-- FORT WORTH + TAMPA -->
-<h2 id="fw" style="scroll-margin-top:14px">Fort Worth &amp; Tampa <span class="meta">branch 99 &amp; 100 · zero offenders</span></h2>
-<div class="clean"><b>Both clean.</b> Fort Worth is the #1 safest branch in the company — its lowest driver (Ryder Bell) is 85. Tampa's lowest (Ronald Peterson) is 73. No driver at either branch is below the ≤69 violation line. Whatever they're doing on driver coaching, it's working.</div>
+<h2 id="fw" style="scroll-margin-top:14px">Fort Worth &amp; Tampa <span class="meta">branch 99 &amp; 97 · zero offenders</span></h2>
+<div class="clean"><b>Both clean.</b> Fort Worth is the #1 safest branch in the company (99); Tampa holds at 97. No driver at either branch is below the ≤69 violation line. Whatever they're doing on driver coaching, it's the model for the other three.</div>
 
 <div class="callout">
 <h3>How to read this for coaching</h3>
 <ul>
-<li><b>Start with <a href="drilldown-critical-coaching.html">Critical Coaching Required</a>.</b> The 4 drivers who are worst-25% in more than one category are the top priority, ahead of anyone who's a single-category issue.</li>
-<li><b>Driving ≠ handling.</b> Some of your worst <i>damages</i> movers (e.g. Graham Gullickson) are perfectly safe <i>drivers</i> (100 score) — so they don't compound, and they're a training problem, not a discipline one. Don't assume a bad mover is a bad driver.</li>
-<li><b>Fort Worth and Tampa prove it's coachable.</b> Zero safety offenders on either. Whatever their driver-coaching cadence is, it's the model for Dallas and McKinney.</li>
+<li><b>Start with <a href="drilldown-critical-coaching.html">Critical Coaching Required</a>.</b> The drivers who are worst-25% in more than one category are the top priority, ahead of anyone who's a single-category issue. (That page refreshes this cycle once estimate + OT are pulled for the same window.)</li>
+<li><b>Driving ≠ handling.</b> A bad <i>damages</i> mover can be a perfectly safe <i>driver</i> (100 score) — so they don't compound, and they're a training problem, not a discipline one. Don't assume a bad mover is a bad driver.</li>
+<li><b>Fort Worth and Tampa prove it's coachable.</b> Zero safety offenders on either. Their driver-coaching cadence is the model for Dallas and McKinney.</li>
 </ul>
 </div>
 
-<p class="muted" style="margin-top:26px"><b>Notes:</b> Window = May 1 – Jul 31, 2026 (Q2), to match the rest of the Command Center. Going forward this refreshes to the current week's range. Safety Score is Samsara's 0–100 telematics score (harsh braking, speeding, distraction, rolling stops, etc.), separate from customer damages. A "0" on very low miles means too little data to score, not a true zero — those drivers are noted, not ranked. Compounding = the same driver is in the worst 25% of more than one drill-down for the period (not merely present in both). · Part of the <a href="index.html">Road to A+ Command Center</a>.</p>
+<p class="muted" style="margin-top:26px"><b>Notes:</b> Window = Aug 1 – Aug 16, 2026 (Q3-to-date, today excluded — not finalized). Branch scores read from Samsara's By-Tag comparison (never averaged by hand). Safety Score is Samsara's 0–100 telematics score (harsh braking, speeding, distraction, rolling stops, etc.), separate from customer damages. A "0" on very low miles means too little data to score, not a true zero — those drivers are noted, not ranked. Compounding = the same driver is in the worst 25% of 2+ drill-downs for the period. · Part of the <a href="index.html">Road to A+ Command Center</a>.</p>
 </div>
